@@ -15,24 +15,24 @@ Installation
 
 To get a local copy up and running, follow these simple steps:
 
-    Clone the repo
+Clone the repo
 
-git clone https://github.com/thato2-5/Flask_Web_Apps.git
+    git clone https://github.com/thato2-5/Flask_Web_Apps.git
 
 Navigate to the project directory
 
-cd your-repo-name
+    cd your-repo-name
 
 Create a virtual environment
 
-python3 -m venv venv
+    python3 -m venv venv
 
 Activate the virtual environment
 
-    On Windows:
+On Windows:
 
 
-venv\Scripts\activate
+    venv\Scripts\activate
 
 On MacOS/Linux:
 
@@ -40,11 +40,11 @@ On MacOS/Linux:
 
 Install dependencies
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Set up the database
 
-flask db upgrade
+    flask db upgrade
 
 Run the application
 
