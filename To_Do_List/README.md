@@ -7,4 +7,4 @@ VS code
 python3
 
 # Output:
-![alt text](https://github.com/thato2-5/To-do-list-using-flask/blob/main/ss.png)
+![alt text](https://github.com/thato2-5/To_Do_List/home.png)
