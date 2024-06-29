@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Update{% endblock %}
+{% block body %}
+<div id="update">
+  <div class="container mt-3">
+    <form action="/update/{{ todo.sno }}" method="POST">
+      <h1 class="fc">Update todo</h1>
+      <div class="mb-3">
+        <label for="title" class="form-label fc">To do title</label>
+        <input type="text" class="form-control bg-light" value="{{ todo.title }}" name="title">
+      </div>
+      <div class="mb-3">
+        <label for="desc" class="form-label fc">To do description</label>
+        <input type="text" class="form-control" value="{{ todo.desc }}" name="desc">
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </form>
+  </div> 
+</div>
+<div id="footer">
+  <div class="container-fluid p-1 fixed-bottom" style="background-color: black;">
+    <p class="text-center" style="background-color: black; color: aliceblue;">This project is Developed by Thato Monyamane</p>
+  </div>
+</div>
+{% endblock %}
+
