@@ -18,7 +18,7 @@ with app.app_context():
     db.create_all()
 
 # Routes for CRUD operations
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])    # Default app route
 def index():
     if request.method == 'POST':
         search_query = request.form.get('search')
@@ -56,5 +56,6 @@ def update(id):
         return redirect(url_for('index'))
     return render_template('update.html', task=task)
 
+# Start the application
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host = '0.0.0.0')
