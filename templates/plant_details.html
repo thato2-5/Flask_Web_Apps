@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Plant Inspection Details</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ survey.CustomerName }}</h5>
+            <p class="card-text">
+                <strong>Site:</strong> {{ survey.CustomerSite }}<br>
+                <strong>Date:</strong> {{ survey.Date }}<br>
+                <strong>Plant Make:</strong> {{ survey.PlantMake }}<br>
+                <strong>Plant Model:</strong> {{ survey.PlantModel }}<br>
+                <strong>Serial Number:</strong> {{ survey.SerialNumber }}
+            </p>
+            <!-- Add more fields as needed -->
+            <a href="{{ url_for('plant_inspection') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

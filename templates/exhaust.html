@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="head">
+  <div class="container text-center mt-5 p-3">
+    <h2>FHS Exhaust Inspection Data</h2>
+  </div>
+</div>
+
+<!-- Filter Form -->
+<div class="card mb-4">
+    <div class="card-header">Filter Inspections</div>
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-3">
+                <label for="customer_name" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="customer_name" name="customer_name" value="{{ request.args.get('customer_name', '') }}">
+            </div>
+            <div class="col-md-3">
+                <label for="customer_site" class="form-label">Customer Site</label>
+                <input type="text" class="form-control" id="customer_site" name="customer_site" value="{{ request.args.get('customer_site', '') }}">
+            </div>
+            <div class="col-md-2">
+                <label for="inspected_by" class="form-label">Inspected By</label>
+                <input type="text" class="form-control" id="inspected_by" name="inspected_by" value="{{ request.args.get('inspected_by', '') }}">
+            </div>
+            <div class="col-md-2">
+                <label for="date_from" class="form-label">From Date</label>
+                <input type="date" class="form-control" id="date_from" name="date_from" value="{{ request.args.get('date_from', '') }}">
+            </div>
+            <div class="col-md-2">
+                <label for="date_to" class="form-label">To Date</label>
+                <input type="date" class="form-control" id="date_to" name="date_to" value="{{ request.args.get('date_to', '') }}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                <a href="{{ url_for('exhaust_inspection') }}" class="btn btn-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="btn-group mb-3">
+    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Export Data
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ url_for('export_word') }}">Word Document</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('export_excel') }}">Excel Spreadsheet</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('export_pdf') }}">PDF Document</a></li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>Exhaust Inspection Records</span>
+            <span class="badge bg-primary">{{ inspections.total }} total records</span>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if inspections.items|length == 0 %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>No data found!</strong> Try adjusting your filters or start adding FHS Exhaust Inspection data now.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="table-responsive" style="overflow-x: auto;">
+            <table class="table table-striped fc">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Site</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Inspector</th>
+                        <th>Plant No</th>
+                        <th>Plant Make</th>
+                        <th>Engine</th>
+                        <th>Muffler</th>
+                        <th>Pipe 1</th>
+                        <th>Pipe 2</th>
+                        <th>General</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for inspection in inspections.items %}
+                    <tr>
+                        <td>{{ loop.index + (inspections.page - 1) * inspections.per_page }}</td>
+                        <td>{{ inspection.ExhaustInspectionID }}</td>
+                        <td>{{ inspection.CustomerName }}</td>
+                        <td>{{ inspection.CustomerSite }}</td>
+                        <td>{{ inspection.Date }}</td>
+                        <td>{{ inspection.Time }}</td>
+                        <td>{{ inspection.InspectedBy }}</td>
+                        <td>{{ inspection.PlantNumber }}</td>
+                        <td>{{ inspection.PlantMake }}</td>
+                        <td>{{ inspection.EngineMake }}</td>
+                        <td>{{ inspection.ExhaustMufflerPartNumber }}</td>
+                        <td>{{ inspection.ExhaustPipePartNumber1 }}</td>
+                        <td>{{ inspection.ExhaustPipePartNumber2 }}</td>
+                        <td>{{ inspection.GeneralComments|truncate(20) }}</td>
+                        <td class="text-center">
+                            <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="#" class="btn btn-sm btn-danger delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Exhaust inspections pagination">
+            <ul class="pagination justify-content-center">
+                {% if inspections.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('exhaust_inspection', page=inspections.prev_num, **request.args) }}">Previous</a>
+                    </li>
+                {% endif %}
+                
+                {% for page_num in inspections.iter_pages() %}
+                    <li class="page-item {% if page_num == inspections.page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('exhaust_inspection', page=page_num, **request.args) }}">{{ page_num }}</a>
+                    </li>
+                {% endfor %}
+                
+                {% if inspections.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('exhaust_inspection', page=inspections.next_num, **request.args) }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .fc {
+        font-size: 0.85rem;
+    }
+    .table-responsive {
+        min-height: 300px;
+    }
+</style>
+{% endblock %}

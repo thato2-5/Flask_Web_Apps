@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mb-4">Edit User</h2>
+    
+    <form id="editUserForm" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="profile_picture" class="form-label">Profile Picture</label>
+            <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*">
+            {% if user.profile_picture %}
+                <div class="mt-2">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}" 
+                         class="img-thumbnail" width="100">
+                    <p class="text-muted mt-1">Current profile picture</p>
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ url_for('get_all_users_page') }}" class="btn btn-secondary">Cancel</a>
+        {% if user.profile_picture %}
+<div class="form-check mt-2">
+    <input class="form-check-input" type="checkbox" id="remove_picture" name="remove_picture">
+    <label class="form-check-label" for="remove_picture">
+        Remove current profile picture
+    </label>
+</div>
+{% endif %}
+    </form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('editUserForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append('username', document.getElementById('username').value);
+    formData.append('email', document.getElementById('email').value);
+    
+    const fileInput = document.getElementById('profile_picture');
+    if (fileInput.files[0]) {
+        formData.append('profile_picture', fileInput.files[0]);
+    }
+    
+    try {
+        const response = await fetch(`/users/{{ user.id }}`, {
+            method: 'PUT',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to update user');
+        }
+        
+        alert('User updated successfully!');
+        window.location.href = '/';
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error.message);
+    }
+    
+    // Image preview before upload
+document.getElementById('profile_picture').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const preview = document.createElement('img');
+            preview.src = event.target.result;
+            preview.className = 'img-thumbnail mt-2';
+            preview.width = 100;
+            
+            const previewContainer = document.querySelector('.current-picture-container') || 
+                                   document.createElement('div');
+            previewContainer.className = 'current-picture-container mt-2';
+            previewContainer.innerHTML = '';
+            previewContainer.appendChild(preview);
+            
+            const fileInput = document.getElementById('profile_picture');
+            fileInput.parentNode.insertBefore(previewContainer, fileInput.nextSibling);
+        };
+        reader.readAsDataURL(file);
+    }
+    
+});
+});
+</script>
+{% endblock %}

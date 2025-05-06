@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+    <h1 class="mb-4">Survey Dashboard</h1>
+    
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Surveys</h5>
+                    <h2 class="card-text">{{ total_surveys }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Plant Inspections</h5>
+                    <h2 class="card-text">{{ plant_inspections }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Exhaust Inspections</h5>
+                    <h2 class="card-text">{{ exhaust_inspections }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Technical Installations</h5>
+                    <h2 class="card-text">{{ technical_installations }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Birth Certificaates</h5>
+                    <h2 class="card-text">{{ birth_certificates }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <!--
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Survey Types Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="surveyTypeChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Monthly Survey Activity</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="monthlyActivityChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    
+    <div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Survey Types Distribution</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="surveyTypeChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Monthly Survey Activity</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="monthlyActivityChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <!-- Recent Surveys Table -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Recent Surveys</h5>
+            <a href="{{ url_for('plant_inspection') }}" class="btn btn-sm btn-outline-primary">View Plant Inspections</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Inspector</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for survey in recent_surveys %}
+                        <tr>
+                            <td>{{ survey.id }}</td>
+                            <td>{{ survey.type }}</td>
+                            <td>{{ survey.date.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ survey.inspector }}</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if survey.status == 'Completed' else 'warning' }}">
+                                    {{ survey.status }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('view_survey', survey_id=survey.id) }}" class="btn btn-sm btn-outline-info">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Quick Actions</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <a href="{{ url_for('plant_inspection') }}" class="btn btn-primary w-100">
+                        <i class="bi bi-tree-fill"></i> View Plant Inspection
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a href="{{ url_for('exhaust_inspection') }}" class="btn btn-success w-100">
+                        <i class="bi bi-fan"></i> View Exhaust Inspection
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a href="{{ url_for('technical_installation') }}" class="btn btn-info w-100">
+                        <i class="bi bi-tools"></i> View Technical Installation
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a href="{{ url_for('birth_certificate') }}" class="btn btn-warning w-100">
+                        <i class="bi bi-file-earmark-text"></i> View Birth Certificate
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ... (keep your existing dashboard content) ... -->
+
+    <!-- Recent Surveys Table with Pagination -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-0">Recent Surveys</h5>
+                <small class="text-muted" id="selectedCount">0 surveys selected</small>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="me-3">
+                    <label for="perPageSelect" class="form-label mb-0">Items per page:</label>
+                    <select class="form-select form-select-sm" id="perPageSelect" style="width: 80px;">
+                        <option value="5" {% if per_page == 5 %}selected{% endif %}>5</option>
+                        <option value="10" {% if per_page == 10 %}selected{% endif %}>10</option>
+                        <option value="20" {% if per_page == 20 %}selected{% endif %}>20</option>
+                        <option value="50" {% if per_page == 50 %}selected{% endif %}>50</option>
+                    </select>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary me-2" id="selectAllBtn">Select All</button>
+                <button class="btn btn-sm btn-outline-secondary me-2" id="deselectAllBtn">Deselect All</button>
+                <a href="{{ url_for('view_all_surveys') }}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form id="exportForm">
+                    <table class="table table-hover">
+                        <!-- ... (keep your existing table headers and rows) ... -->
+                    </table>
+                </form>
+            </div>
+            
+            <!-- Pagination Controls -->
+            <nav aria-label="Table pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                        <a class="page-link" href="{{ url_for('dashboard', page=page-1, per_page=per_page) }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    
+                    {% for p in range(1, total_pages + 1) %}
+                        <li class="page-item {% if p == page %}active{% endif %}">
+                            <a class="page-link" href="{{ url_for('dashboard', page=p, per_page=per_page) }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                    
+                    <li class="page-item {% if page == total_pages %}disabled{% endif %}">
+                        <a class="page-link" href="{{ url_for('dashboard', page=page+1, per_page=per_page) }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// Survey Type Chart
+const surveyTypeCtx = document.getElementById('surveyTypeChart').getContext('2d');
+const surveyTypeChart = new Chart(surveyTypeCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Plant Inspections', 'Exhaust Inspections', 'Technical Installations', 'Birth Certificates'],
+        datasets: [{
+            data: [{{ plant_inspections }}, {{ exhaust_inspections }}, {{ technical_installations }}, {{ birth_certificates }}],
+            backgroundColor: [
+                '#0d6efd',
+                '#198754',
+                '#0dcaf0',
+                '#ffc107'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+/*
+// Monthly Activity Chart
+const monthlyActivityCtx = document.getElementById('monthlyActivityChart').getContext('2d');
+const monthlyActivityChart = new Chart(monthlyActivityCtx, {
+    type: 'bar',
+    data: {
+        labels: {{ monthly_labels|tojson }},
+        datasets: [{
+            label: 'Surveys Completed',
+            data: {{ monthly_data|tojson }},
+            backgroundColor: '#0d6efd',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+    }
+});
+*/
+
+// Monthly Activity Chart - Stacked Bar Chart
+const monthlyActivityCtx = document.getElementById('monthlyActivityChart').getContext('2d');
+const monthlyActivityChart = new Chart(monthlyActivityCtx, {
+    type: 'bar',
+    data: {
+        labels: {{ monthly_labels|tojson }},
+        datasets: [
+            {
+                label: 'Completed',
+                data: {{ monthly_completed|tojson }},
+                backgroundColor: '#198754', // Green
+                borderWidth: 1
+            },
+            {
+                label: 'Critical',
+                data: {{ monthly_critical|tojson }},
+                backgroundColor: '#dc3545', // Red
+                borderWidth: 1
+            },
+            {
+                label: 'Incomplete',
+                data: {{ monthly_incomplete|tojson }},
+                backgroundColor: '#ffc107', // Yellow
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                stacked: true,
+            },
+            y: {
+                stacked: true,
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+    }
+});
+
+// Items per page selection
+document.getElementById('perPageSelect').addEventListener('change', function() {
+    const perPage = this.value;
+    window.location.href = "{{ url_for('dashboard', page=1) }}" + "&per_page=" + perPage;
+});
+
+// Update the export function to maintain pagination parameters
+window.exportTo = function(format) {
+    const selectedSurveys = Array.from(document.querySelectorAll('.survey-checkbox:checked'))
+        .map(checkbox => checkbox.value);
+    
+    if (selectedSurveys.length === 0) {
+        alert('Please select at least one survey to export.');
+        return;
+    }
+
+    // Add selected surveys to form
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'selected_ids';
+    hiddenInput.value = selectedSurveys.join(',');
+    exportForm.appendChild(hiddenInput);
+
+    // Add current page and per_page to maintain context
+    const pageInput = document.createElement('input');
+    pageInput.type = 'hidden';
+    pageInput.name = 'page';
+    pageInput.value = "{{ page }}";
+    exportForm.appendChild(pageInput);
+    
+    const perPageInput = document.createElement('input');
+    perPageInput.type = 'hidden';
+    perPageInput.name = 'per_page';
+    perPageInput.value = "{{ per_page }}";
+    exportForm.appendChild(perPageInput);
+
+    // Set the action based on format
+    exportForm.action = `/export/${format}`;
+    exportForm.method = 'POST';
+    exportForm.submit();
+};
+
+</script>
+{% endblock %}
+

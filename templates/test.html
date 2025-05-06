@@ -1,0 +1,147 @@
+ {% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+    <!-- ... (keep your existing dashboard content) ... -->
+
+    <!-- Recent Surveys Table - Updated with checkboxes -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-0">Recent Surveys</h5>
+                <small class="text-muted" id="selectedCount">0 surveys selected</small>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-outline-secondary me-2" id="selectAllBtn">Select All</button>
+                <button class="btn btn-sm btn-outline-secondary me-2" id="deselectAllBtn">Deselect All</button>
+                <a href="{{ url_for('view_all_surveys') }}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form id="exportForm">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th width="40px">
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Inspector</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for survey in recent_surveys %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="survey-checkbox" name="selected_surveys" value="{{ survey.id }}">
+                                </td>
+                                <td>{{ survey.id }}</td>
+                                <td>{{ survey.type }}</td>
+                                <td>{{ survey.date.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ survey.inspector }}</td>
+                                <td>
+                                    <span class="badge bg-{{ 'success' if survey.status == 'Completed' else 'warning' }}">
+                                        {{ survey.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('view_survey', survey_id=survey.id) }}" class="btn btn-sm btn-outline-info">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- ... (keep your existing Chart.js scripts) ... -->
+
+<script>
+// Select/Deselect functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const selectAll = document.getElementById('selectAll');
+    const selectAllBtn = document.getElementById('selectAllBtn');
+    const deselectAllBtn = document.getElementById('deselectAllBtn');
+    const checkboxes = document.querySelectorAll('.survey-checkbox');
+    const selectedCount = document.getElementById('selectedCount');
+    const exportForm = document.getElementById('exportForm');
+
+    // Select all checkboxes
+    selectAll.addEventListener('change', function() {
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = this.checked;
+        });
+        updateSelectedCount();
+    });
+
+    // Select all button
+    selectAllBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = true;
+        });
+        selectAll.checked = true;
+        updateSelectedCount();
+    });
+
+    // Deselect all button
+    deselectAllBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        selectAll.checked = false;
+        updateSelectedCount();
+    });
+
+    // Individual checkbox change
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            updateSelectedCount();
+            // Update "select all" checkbox status
+            selectAll.checked = [...checkboxes].every(cb => cb.checked);
+        });
+    });
+
+    // Update selected count display
+    function updateSelectedCount() {
+        const selected = document.querySelectorAll('.survey-checkbox:checked').length;
+        selectedCount.textContent = `${selected} survey${selected !== 1 ? 's' : ''} selected`;
+    }
+
+    // Export functionality with selected surveys
+    window.exportTo = function(format) {
+        const selectedSurveys = Array.from(document.querySelectorAll('.survey-checkbox:checked'))
+            .map(checkbox => checkbox.value);
+        
+        if (selectedSurveys.length === 0) {
+            alert('Please select at least one survey to export.');
+            return;
+        }
+
+        // Add selected surveys to form
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'selected_ids';
+        hiddenInput.value = selectedSurveys.join(',');
+        exportForm.appendChild(hiddenInput);
+
+        // Set the action based on format
+        exportForm.action = `/export/${format}`;
+        exportForm.method = 'POST';
+        exportForm.submit();
+    };
+});
+</script>
+{% endblock %}
+

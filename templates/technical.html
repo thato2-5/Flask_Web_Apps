@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h2>FHS Technical Installation Data</h2>
+    </div>
+
+    <!-- Filter Form -->
+<div class="card mb-4">
+    <div class="card-header">Filter Technical Installations</div>
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-3">
+                <label for="customer_name" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="customer_name" name="customer_name" value="{{ request.args.get('customer_name', '') }}">
+            </div>
+            <div class="col-md-3">
+                <label for="customer_site" class="form-label">Job Number</label>
+                <input type="text" class="form-control" id="customer_site" name="customer_site" value="{{ request.args.get('customer_site', '') }}">
+            </div>
+            <div class="col-md-3">
+                <label for="customer_site" class="form-label">Plant Make</label>
+                <input type="text" class="form-control" id="customer_site" name="customer_site" value="{{ request.args.get('customer_site', '') }}">
+            </div>
+            <div class="col-md-3">
+                <label for="date_from" class="form-label">From Date</label>
+                <input type="date" class="form-control" id="date_from" name="date_from" value="{{ request.args.get('date_from', '') }}">
+            </div>
+            <div class="col-md-3">
+                <label for="date_to" class="form-label">To Date</label>
+                <input type="date" class="form-control" id="date_to" name="date_to" value="{{ request.args.get('date_to', '') }}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                <a href="{{ url_for('birth_certificate') }}" class="btn btn-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
+</div>
+    
+    <!-- Export and Create Buttons -->
+    <div class="d-flex justify-content-between mb-3">
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Export Data
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('export_word') }}">Word Document</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('export_excel') }}">Excel Spreadsheet</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('export_pdf') }}">PDF Document</a></li>
+            </ul>
+        </div>
+        <span class="badge bg-primary align-self-center">{{ installations.total }} records found</span>
+    </div>
+
+    <!-- Main Table -->
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Technical Installation Records</span>
+                <span class="badge bg-primary">{{ installations.total }} total records</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                {% if installations.items|length == 0 %}
+                <div class="alert alert-warning m-3">
+                    <strong>No data found!</strong> Try adjusting your filters or start adding FHS Technical Installation data now.
+                </div>
+                {% else %}
+                <table class="table table-striped mb-0" style="font-size: 0.85rem;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Job #</th>
+                            <th>Invoice #</th>
+                            <th>Plant Make</th>
+                            <th>Plant Model</th>
+                            <th>Engine</th>
+                            <th>Warranty</th>
+                            <th>Photos</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for installation in installations.items %}
+                        <tr>
+                            <td>{{ loop.index + (installations.page - 1) * installations.per_page }}</td>
+                            <td>{{ installation.TechnicalInstallationID }}</td>
+                            <td>{{ installation.CustomerName|truncate(15) }}</td>
+                            <td>{{ installation.Date }}</td>
+                            <td>{{ installation.JobNumber }}</td>
+                            <td>{{ installation.InvoiceNumber }}</td>
+                            <td>{{ installation.PlantMake|truncate(10) }}</td>
+                            <td>{{ installation.PlantModel|truncate(10) }}</td>
+                            <td>{{ installation.EngineMake|truncate(10) }}</td>
+                            <td>
+                                {{ installation.WarrantyStartDate }}<br>
+                                to {{ installation.WarrantyEndDate }}
+                            </td>
+                            <td>
+                                {% if installation.InstallationPhoto1 %}1{% endif %}
+                                {% if installation.InstallationPhoto2 %}2{% endif %}
+                                {% if installation.InstallationPhoto3 %}3{% endif %}
+                                ...
+                            </td>
+                            <td class="text-nowrap">
+                            <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="#" class="btn btn-sm btn-danger delete-btn">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        {% if installations.pages > 1 %}
+        <div class="card-footer">
+            <nav aria-label="Installation pagination">
+                <ul class="pagination justify-content-center mb-0">
+                    {% if installations.has_prev %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('technical_installation', page=installations.prev_num, **request.args) }}">Previous</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for page_num in installations.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                        {% if page_num %}
+                            <li class="page-item {% if page_num == installations.page %}active{% endif %}">
+                                <a class="page-link" href="{{ url_for('technical_installation', page=page_num, **request.args) }}">{{ page_num }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if installations.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('technical_installation', page=installations.next_num, **request.args) }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .table-responsive {
+        min-height: 400px;
+    }
+    .table td, .table th {
+        white-space: nowrap;
+    }
+</style>
+{% endblock %}

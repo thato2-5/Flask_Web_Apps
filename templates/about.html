@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="about">
+  <div class="container p-4 mb-2">
+    <div class="row text-center">
+      <h1>About Us</h1>
+    </div>
+    <h3>About FHS Survey Forms</h3>
+    <p>FHS Survey Forms is a simple web application.</p>
+    <div class="container mt-2">
+      <div class="row p-3 mb-2">
+        <p>
+          <h3>Our Mission</h3>
+          At FHS Survey Forms, we are passionate about ensuring customer satisfaction. Our platform empowers technitians, researchers and customers in ensuring good relationships as well as maintaining and protecting their equipment through collaborative surveys and data-driven insights.
+          <h3>What We Do</h3>
+          <ul>
+            <li>
+              Provide a <b>user-friendly web app</b> for recording and sharing customer equipment observations.
+            </li>
+            <li>
+              Enable <b>crowd-sourced equipment surveys</b> to track machine distribution and health.
+            </li>
+            <li>
+              Offer <b>data visualization tools</b> to help researchers and policymakers make informed conservation descisions.
+            </li>
+            <li>
+              Foster a <b>community of technitians, researchers, and citizen scientists</b> dedicated to protecting our customers equipment / machines.
+            </li>
+          </ul>
+          <h3>Our Team</h3>
+          We are a group of <b>technitians, developers, and data scientits</b> united by a shared love for customer satisfaction. Our expertise in maintenance, software development, and AI-driven analytics ensures that our platform is both scientifically robust and easy to use.
+          <h3>Why Choose Us ?</h3>
+          <ul>
+            <li>
+              <b>Accurate Data Collection</b> - Advanced tools for precise equipment identification.
+            </li>
+            <li>
+              <b>Global Collaboration</b> - Connect researchers and volunteers worldwide.
+            </li>
+            <li>
+              <b>Sustainable Focus</b> - Contributing to better customer relationship and satisfaction.
+            </li>
+          </ul>
+          <h3>Get Involved</h3>
+          <ul>
+            <li>
+              <b><a href="{{ url_for('register') }}">Sign Up</a></b> to start performing surveys.
+            </li>
+            <li>
+              <b>Follow Us</b> on Facebook
+            </li>
+            <li>
+              <b>Contact Us</b> at <a href="mailto:support@fhs.co.za">support@fhs.co.za</a> for partnership or inquires.
+            </li>
+          </ul>
+          <b>Together, let us ensure a godd customer relationship and satisfaction.</b>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

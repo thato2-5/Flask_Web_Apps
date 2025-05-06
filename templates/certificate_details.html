@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Birth Certificate Details</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ survey.CustomerName }}</h5>
+            <p class="card-text">
+                <strong>Site:</strong> {{ survey.CustomerSite }}<br>
+                <strong>Date:</strong> {{ survey.Date }}<br>
+                <strong>Plant Make:</strong> {{ survey.PlantMake }}<br>
+                <strong>Plant Model:</strong> {{ survey.PlantModel }}<br>
+                <strong>Contact Person:</strong> {{ survey.ContactPerson }}
+            </p>
+            <!-- Add more fields as needed -->
+            <a href="{{ url_for('birth_certificate') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

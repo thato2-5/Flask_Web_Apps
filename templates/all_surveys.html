@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>All Surveys</h2>
+    
+    <div class="mb-4">
+        <h4>Plant Inspections</h4>
+        <div class="list-group">
+            {% for survey in plant_surveys %}
+            <a href="{{ url_for('plant_inspection_details', survey_id=survey.PlantInspectionID) }}" 
+               class="list-group-item list-group-item-action">
+                {{ survey.CustomerName }} - {{ survey.PlantMake }} {{ survey.PlantModel }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        <h4>Exhaust Inspections</h4>
+        <div class="list-group">
+            {% for survey in exhaust_surveys %}
+            <a href="{{ url_for('exhaust_inspection_details', survey_id=survey.ExhaustInspectionID) }}" 
+               class="list-group-item list-group-item-action">
+                {{ survey.CustomerName }} - {{ survey.PlantMake }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        <h4>Technical Installations</h4>
+        <div class="list-group">
+            {% for survey in technical_surveys %}
+            <a href="{{ url_for('technical_installation_details', survey_id=survey.TechnicalInstallationID) }}" 
+               class="list-group-item list-group-item-action">
+                {{ survey.CustomerName }} - {{ survey.plantMake }} {{ survey.plantModel }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        <h4>Birth Certificates</h4>
+        <div class="list-group">
+            {% for survey in certificate_surveys %}
+            <a href="{{ url_for('birth_certificate_details', survey_id=survey.PlantInspectionID) }}" 
+               class="list-group-item list-group-item-action">
+                {{ survey.CustomerName }} - {{ survey.PlantMake }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}
