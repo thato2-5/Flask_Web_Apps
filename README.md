@@ -86,9 +86,6 @@ python3
 # Technical:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/technical_installation_details.png)
 
-# Certificate:
-![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/birth_certificate_details.png)
-
 # Logout:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/logout_success.png)
 
