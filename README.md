@@ -27,4 +27,4 @@ VS code
 python3
 
 # Output:
-![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/main/home.png)
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/Custom_Do_Forms/home.png)
