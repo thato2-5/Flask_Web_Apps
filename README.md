@@ -31,3 +31,6 @@ python3
 
 # About Us:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/Custom_Do_Forms/about.png)
+
+# Dashboard:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/Custom_Do_Forms/dashboard.png)
