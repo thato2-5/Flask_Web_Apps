@@ -84,13 +84,13 @@ python3
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/about01.png)
 
 # Exhaust:
-![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/privacy01.png)
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/exhaust_inspection_details.png)
 
 # Technical:
-![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/activity_logs.png)
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/technical_installation_details.png)
 
 # Certificate:
-![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/activity_logs_filter.png)
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/birth_certificate_details.png)
 
 # Logout:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/logout_success.png)
