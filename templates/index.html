@@ -1,0 +1,1413 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<div id="head">
+  <div class="container text-center mt-5 p-3" style="background-color: #05fa22; border-radius: 15px;">
+    <h2>FHS Technical Installation Data</h2>
+  </div>
+</div>
+
+<div id="usertable">
+  <div class="container p-2 mb-5">
+    <table class="table fc">
+      {% if technicalInstallations|length == 0 %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>No data found!</strong> Start adding FHS Technical Installation data now.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Technical Installation ID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Job Number</th>
+          <th scope="col">Invoice Number</th>
+          <th scope="col">Plant Make</th>
+          <th scope="col">Plant Model</th>
+          <th scope="col">Serial Number</th>
+          <th scope="col">Engine Make</th>
+          <th scope="col">Engine Model</th>
+          <th scope="col">Engine Serial Number</th>
+          <th scope="col">Plant Number</th>
+          <th scope="col">Plant Kms / Hrs</th>
+          <th scope="col">Warranty Start Date</th>
+          <th scope="col">Warranty End Date</th>
+          <th scope="col">Installation Photo1</th>
+          <th scope="col">Installation Photo2</th>
+          <th scope="col">Installation Photo3</th>
+          <th scope="col">Installation Photo4</th>
+          <th scope="col">Installation Photo5</th>
+          <th scope="col">Installation Photo6</th>
+          <th scope="col">Additional Comments Suggestions</th>
+          <th scope="col">Customer Full Name</th>
+          <th scope="col">Customer Date</th>
+          <th scope="col">Technitian Full Name</th>
+          <th scope="col">Technitian Date</th>
+          <th scope="col">Email Report To</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for technicalInstallation in technicalInstallations %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ technicalInstallation.TechnicalInstallationID }}</td>
+          <td>{{ technicalInstallation.CustomerName }}</td>
+          <td>{{ technicalInstallation.CustomerSite }}</td>
+          <td>{{ technicalInstallation.Date }}</td>
+          <td>{{ technicalInstallation.Time }}</td>
+          <td>{{ technicalInstallation.JobNumber }}</td>
+          <td>{{ technicalInstallation.InvoiceNumber }}</td>
+          <td>{{ technicalInstallation.PlantMake }}</td>
+          <td>{{ technicalInstallation.PlantModel }}</td>
+          <td>{{ technicalInstallation.SerialNumber }}</td>
+          <td>{{ technicalInstallation.EngineMake }}</td>
+          <td>{{ technicalInstallation.EngineModel }}</td>
+          <td>{{ technicalInstallation.EngineSerialNumber }}</td>
+          <td>{{ technicalInstallation.PlantNumber }}</td>
+          <td>{{ technicalInstallation.PlantKmsHrs }}</td>
+          <td>{{ technicalInstallation.WarrantyStartDate }}</td>
+          <td>{{ technicalInstallation.WarrantyEndDate }}</td>
+          <td>{{ technicalInstallation.InstallationPhoto1 }}</td>
+          <td>{{ technicalInstallation.InstallationPhoto2 }}</td>
+          <td>{{ technicalInstallation.InstallationPhoto3 }}</td>
+          <td>{{ technicalInstallation.InstallationPhoto4 }}</td>
+          <td>{{ technicalInstallation.InstallationPhoto5 }}</td>
+          <td>{{ technicalInstallation.InstallationPhoto6 }}</td>
+          <td>{{ technicalInstallation.AdditionalCommentsSuggestions }}</td>
+          <td>{{ technicalInstallation.CustomerFullName }}</td>
+          <td>{{ technicalInstallation.CustomerDate }}</td>
+          <td>{{ technicalInstallation.TechnitianFullName }}</td>
+          <td>{{ technicalInstallation.TechnitianDate }}</td>
+          <td>{{ technicalInstallation.EmailReportTo }}</td>
+
+          <td class="text-center">
+            <a href='/update/{{ technicalInstallation.TechnicalInstallationID }}' class="btn btn-success">Update</a>
+            <a href='/delete/{{ technicalInstallation.TechnicalInstallationID }}' class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endif %}
+    </table>
+  </div>
+</div>
+
+<div id="head">
+  <div class="container text-center mt-5 p-3" style="background-color: #05fa22; border-radius: 15px;">
+    <h2>FHS Plant Installation Data</h2>
+  </div>
+</div>
+
+<div id="usertable">
+  <div class="container p-2 mb-5">
+    <table class="table fc">
+      {% if plantInspections|length == 0 %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>No data found!</strong> Start adding FHS Plant Inspection data now.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Plant Inspection ID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Customer Site</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">Contact Person</th>
+          <th scope="col">Inspected By</th>
+          <th scope="col">Inspection Assistant</th>
+          <th scope="col">Plant Number</th>
+          <th scope="col">Plant Make</th>
+          <th scope="col">Plant Model</th>
+          <th scope="col">Serial Number</th>
+          <th scope="col">Plant Kms Hrs</th>
+          <th scope="col">Engine Make</th>
+          <th scope="col">Engine Model</th>
+          <th scope="col">Engine Serial Number</th>
+          <th scope="col">Primary Fuel Filter Part Number</th>
+          <th scope="col">Primary Fuel Filter Photo</th>
+	  <th scope="col">Comments On Fuel Filter</th>
+          <th scope="col">Secondary Fuel Filter Part Number</th>
+          <th scope="col">Secondary Fuel Filter Photo</th>
+          <th scope="col">Comments On Secondary Fuel Filter</th>
+          <th scope="col">Fuel Water Separator Part Number</th>
+          <th scope="col">Fuel Water Separator Photo</th>
+          <th scope="col">Comments On Fuel Water Separator</th>
+          <th scope="col">Oil Filter Part Number</th>
+          <th scope="col">Oil Filter Photo</th>
+          <th scope="col">Comments On Oil Filter</th>
+          <th scope="col">Bypass Oil Filter Part Number</th>
+          <th scope="col">Bypass Oil Filter Photo</th>
+          <th scope="col">Comments On Bypass Oil Filter</th>
+          <th scope="col">Hydraulic Filter Part Number 1</th>
+          <th scope="col">Hydraulic Filter Photo 1</th>
+          <th scope="col">Comments On Hydraulic Filter 1</th>
+          <th scope="col">Hydraulic Filter Part Number 2</th>
+          <th scope="col">Hydraulic Filter Photo 2</th>
+          <th scope="col">Comments On Hydraulic Filter 2</th>
+          <th scope="col">Hydraulic Filter Part Number 3</th>
+          <th scope="col">Hydraulic Filter Photo 3</th>
+          <th scope="col">Comments On Hydraulic Filter 3</th>
+          <th scope="col">Hydraulic Filter Part Number 4</th>
+          <th scope="col">Hydraulic Filter Photo 4</th>
+          <th scope="col">Comments On Hydraulic Filter 4</th>
+          <th scope="col">Hydraulic Filter Part Number 5</th>
+          <th scope="col">Hydraulic Filter Photo 5</th>
+          <th scope="col">Comments On Hydraulic Filter 5</th>
+          <th scope="col">Hydraulic Filter Part Number 6</th>
+          <th scope="col">Hydraulic Filter Photo 6</th>
+          <th scope="col">Comments On Hydraulic Filter 6</th>
+          <th scope="col">Hydraulic Filter Part Number 7</th>
+          <th scope="col">Hydraulic Filter Photo 7</th>
+          <th scope="col">Comments On Hydraulic Filter 7</th>
+          <th scope="col">Hydraulic Filter Part Number 8</th>
+          <th scope="col">Hydraulic Filter Photo 8</th>
+          <th scope="col">Comments On Hydraulic Filter 8</th>
+          <th scope="col">Transmission Filter Part Number 1</th>
+          <th scope="col">Transmission Filter Photo 1</th>
+          <th scope="col">Comments On Transmission Filter 1</th>
+          <th scope="col">Transmission Filter Part Number 2</th>
+          <th scope="col">Transmission Filter Photo 2</th>
+          <th scope="col">Comments On Transmission Filter 2</th>
+          <th scope="col">Transmission Filter Part Number 3</th>
+          <th scope="col">Transmission Filter Photo 3</th>
+          <th scope="col">Comments On Transmission Filter 3</th>
+          <th scope="col">Transmission Filter Part Number 4</th>
+          <th scope="col">Transmission Filter Photo 4</th>
+          <th scope="col">Comments On Transmission Filter 4</th>
+          <th scope="col">Transmission Filter Part Number 5</th>
+          <th scope="col">Transmission Filter Photo 5</th>
+          <th scope="col">Comments On Transmission Filter 5</th>
+          <th scope="col">Transmission Filter Part Number 6</th>
+          <th scope="col">Transmission Filter Photo 6</th>
+          <th scope="col">Comments On Transmission Filter 6</th>
+          <th scope="col">Transmission Filter Part Number 7</th>
+          <th scope="col">Transmission Filter Photo 7</th>
+          <th scope="col">Comments On Transmission Filter 7</th>
+          <th scope="col">Transmission Filter Part Number 8</th>
+          <th scope="col">Transmission Filter Photo 8</th>
+          <th scope="col">Comments On Transmission Filter 8</th>
+          <th scope="col">Coolant Filter Part Number 1</th>
+          <th scope="col">Coolant Filter Photo 1</th>
+          <th scope="col">Comments On Coolant Filter 1</th>
+          <th scope="col">Coolant Filter Part Number 2</th>
+          <th scope="col">Coolant Filter Photo 2</th>
+          <th scope="col">Comments On Coolant Filter 2</th>
+          <th scope="col">Coolant Filter Part Number 3</th>
+          <th scope="col">Coolant Filter Photo 3</th>
+          <th scope="col">Comments On Coolant Filter 3</th>
+          <th scope="col">Coolant Filter Part Number 4</th>
+          <th scope="col">Coolant Filter Photo 4</th>
+          <th scope="col">Comments On Coolant Filter 4</th>
+          <th scope="col">Coolant Filter Part Number 5</th>
+          <th scope="col">Coolant Filter Photo 5</th>
+          <th scope="col">Comments On Coolant Filter 5</th>
+          <th scope="col">Coolant Filter Part Number 6</th>
+          <th scope="col">Coolant Filter Photo 6</th>
+          <th scope="col">Comments On Coolant Filter 6</th>
+          <th scope="col">Coolant Filter Part Number 7</th>
+          <th scope="col">Coolant Filter Photo 7</th>
+          <th scope="col">Comments On Coolant Filter 7</th>
+          <th scope="col">Coolant Filter Part Number 8</th>
+          <th scope="col">Coolant Filter Photo 8</th>
+          <th scope="col">Comments On Coolant Filter 8</th>
+          <th scope="col">Breather Filter Part Number 1</th>
+          <th scope="col">Breather Filter Photo 1</th>
+          <th scope="col">Comments On Breather Filter 1</th>
+          <th scope="col">Breather Filter Part Number 2</th>
+          <th scope="col">Breather Filter Photo 2</th>
+          <th scope="col">Comments On Breather Filter 2</th>
+          <th scope="col">Breather Filter Part Number 3</th>
+          <th scope="col">Breather Filter Photo 3</th>
+          <th scope="col">Comments On Breather Filter 3</th>
+          <th scope="col">Breather Filter Part Number 4</th>
+          <th scope="col">Breather Filter Photo 4</th>
+          <th scope="col">Comments On Breather Filter 4</th>
+          <th scope="col">Breather Filter Part Number 5</th>
+          <th scope="col">Breather Filter Photo 5</th>
+          <th scope="col">Comments On Breather Filter 5</th>
+          <th scope="col">Breather Filter Part Number 6</th>
+          <th scope="col">Breather Filter Photo 6</th>
+          <th scope="col">Comments On Breather Filter 6</th>
+          <th scope="col">Breather Filter Part Number 7</th>
+          <th scope="col">Breather Filter Photo 7</th>
+          <th scope="col">Comments On Breather Filter 7</th>
+          <th scope="col">Breather Filter Part Number 8</th>
+          <th scope="col">Breather Filter Photo 8</th>
+          <th scope="col">Comments On Breather Filter 8</th>
+          <th scope="col">Air Dryer Part Number 1</th>
+          <th scope="col">Air Dryer Photo 1</th>
+          <th scope="col">Comments On Air Dryer 1</th>
+          <th scope="col">Air Dryer Part Number 2</th>
+          <th scope="col">Air Dryer Photo 2</th>
+          <th scope="col">Comments On Air Dryer 2</th>
+          <th scope="col">Air Dryer Part Number 3</th>
+          <th scope="col">Air Dryer Photo 3</th>
+          <th scope="col">Comments On Air Dryer 3</th>
+          <th scope="col">Air Dryer Part Number 4</th>
+          <th scope="col">Air Dryer Photo 4</th>
+          <th scope="col">Comments On Air Dryer 4</th>
+          <th scope="col">Air Dryer Part Number 5</th>
+          <th scope="col">Air Dryer Photo 5</th>
+          <th scope="col">Comments On Air Dryer 5</th>
+          <th scope="col">Air Dryer Part Number 6</th>
+          <th scope="col">Air Dryer Photo 6</th>
+          <th scope="col">Comments On Air Dryer 6</th>
+          <th scope="col">Air Dryer Part Number 7</th>
+          <th scope="col">Air Dryer Photo 7</th>
+          <th scope="col">Comments On Air Dryer 7</th>
+          <th scope="col">Air Dryer Part Number 8</th>
+          <th scope="col">Air Dryer Photo 8</th>
+          <th scope="col">Comments On Air Dryer 8</th>
+          <th scope="col">Cabin Filter Part Number 1</th>
+          <th scope="col">Cabin Filter Photo 1</th>
+          <th scope="col">Comments On Cabin Filter 1</th>
+          <th scope="col">Cabin Filter Part Number 2</th>
+          <th scope="col">Cabin Filter Photo 2</th>
+          <th scope="col">Comments On Cabin Filter 2</th>
+          <th scope="col">Cabin Filter Part Number 3</th>
+          <th scope="col">Cabin Filter Photo 3</th>
+          <th scope="col">Comments On Cabin Filter 3</th>
+          <th scope="col">Cabin Filter Part Number 4</th>
+          <th scope="col">Cabin Filter Photo 4</th>
+          <th scope="col">Comments On Cabin Filter 4</th>
+          <th scope="col">Cabin Filter Part Number 5</th>
+          <th scope="col">Cabin Filter Photo 5</th>
+          <th scope="col">Comments On Cabin Filter 5</th>
+          <th scope="col">Cabin Filter Part Number 6</th>
+          <th scope="col">Cabin Filter Photo 6</th>
+          <th scope="col">Comments On Cabin Filter 6</th>
+          <th scope="col">Cabin Filter Part Number 7</th>
+          <th scope="col">Cabin Filter Photo 7</th>
+          <th scope="col">Comments On Cabin Filter 7</th>
+          <th scope="col">Cabin Filter Part Number 8</th>
+          <th scope="col">Cabin Filter Photo 8</th>
+          <th scope="col">Comments On Cabin Filter 8</th>
+          <th scope="col">Air Cleaner Model</th>
+          <th scope="col">Photo Of Air Cleaner Arrangement</th>
+          <th scope="col">Primary Element Part Number</th>
+          <th scope="col">Primary Element Date Code</th>
+          <th scope="col">Photo Of Primary Air Cleaner Element</th>
+          <th scope="col">Comments On Primary Air Cleaner Element</th>
+          <th scope="col">Safety Element Part Number</th>
+          <th scope="col">Safety Element Date Code</th>
+          <th scope="col">Comments On Safety Element</th>
+          <th scope="col">Photo Of Air Cleaner Outlet</th>
+          <th scope="col">Additional Comments Suggestions</th>
+          <th scope="col">Comments On Air Cleaner Outlet</th>
+          <th scope="col">Photo Of Clean Air Ducting</th>
+          <th scope="col">Comments On Clean Air Ducting</th>
+          <th scope="col">Restriction Indicator Part Number</th>
+          <th scope="col">Restriction Indicator Photo</th>
+          <th scope="col">Comments On Restriction Indicator</th>
+          <th scope="col">Vacuator Valves Part Number 1</th>
+          <th scope="col">Vacuator Valves Photo 1</th>
+          <th scope="col">Comments On Vacuator Valves 1</th>
+          <th scope="col">Vacuator Valves Part Number 2</th>
+          <th scope="col">Vacuator Valves Photo 2</th>
+          <th scope="col">Comments On Vacuator Valves 2</th>
+          <th scope="col">Vacuator Valves Part Number 3</th>
+          <th scope="col">Vacuator Valves Photo 3</th>
+          <th scope="col">Comments On Vacuator Valves 3</th>
+          <th scope="col">Vacuator Valves Part Number 4</th>
+          <th scope="col">Vacuator Valves Photo 4</th>
+          <th scope="col">Comments On Vacuator Valves 4</th>
+          <th scope="col">Vacuator Valves Part Number 5</th>
+          <th scope="col">Vacuator Valves Photo 5</th>
+          <th scope="col">Comments On Vacuator Valves 5</th>
+          <th scope="col">Vacuator Valves Part Number 6</th>
+          <th scope="col">Vacuator Valves Photo 6</th>
+          <th scope="col">Comments On Vacuator Valves 6</th>
+          <th scope="col">Vacuator Valves Part Number 7</th>
+          <th scope="col">Vacuator Valves Photo 7</th>
+          <th scope="col">Comments On Vacuator Valves 7</th>
+          <th scope="col">Vacuator Valves Part Number 8</th>
+          <th scope="col">Vacuator Valves Photo 8</th>
+          <th scope="col">Comments On Vacuator Valves 8</th>
+          <th scope="col">Other Observations Part Number 1</th>
+          <th scope="col">Other Observations Photo 1</th>
+          <th scope="col">Comments On Other Observations 1</th>
+          <th scope="col">Other Observations Part Number 2</th>
+          <th scope="col">Other Observations Photo 2</th>
+          <th scope="col">Comments On Other Observations 2</th>
+          <th scope="col">Other Observations Part Number 3</th>
+          <th scope="col">Other Observations Photo 3</th>
+          <th scope="col">Comments On Other Observations 3</th>
+          <th scope="col">Other Observations Part Number 4</th>
+          <th scope="col">Other Observations Photo 4</th>
+          <th scope="col">Comments On Other Observations 4</th>
+          <th scope="col">Other Observations Part Number 5</th>
+          <th scope="col">Other Observations Photo 5</th>
+          <th scope="col">Comments On Other Observations 5</th>
+          <th scope="col">Other Observations Part Number 6</th>
+          <th scope="col">Other Observations Photo 6</th>
+          <th scope="col">Comments On Other Observations 6</th>
+          <th scope="col">Other Observations Part Number 7</th>
+          <th scope="col">Other Observations Photo 7</th>
+          <th scope="col">Comments On Other Observations 7</th>
+          <th scope="col">Other Observations Part Number 8</th>
+          <th scope="col">Other Observations Photo 8</th>
+          <th scope="col">Comments On Other Observations 8</th>
+          <th scope="col">Exhaust Inspection Part Number 1</th>
+          <th scope="col">Exhaust Inspection Photo 1</th>
+          <th scope="col">Comments On Exhaust Inspection 1</th>
+          <th scope="col">Exhaust Inspection Part Number 2</th>
+          <th scope="col">Exhaust Inspection Photo 2</th>
+          <th scope="col">Comments On Exhaust Inspection 2</th>
+          <th scope="col">Exhaust Inspection Part Number 3</th>
+          <th scope="col">Exhaust Inspection Photo 3</th>
+          <th scope="col">Comments On Exhaust Inspection 3</th>
+          <th scope="col">Exhaust Inspection Part Number 4</th>
+          <th scope="col">Exhaust Inspection Photo 4</th>
+          <th scope="col">Comments On Exhaust Inspection 4</th>
+          <th scope="col">Exhaust Inspection Part Number 5</th>
+          <th scope="col">Exhaust Inspection Photo 5</th>
+          <th scope="col">Comments On Exhaust Inspection 5</th>
+          <th scope="col">Exhaust Inspection Part Number 6</th>
+          <th scope="col">Exhaust Inspection Photo 6</th>
+          <th scope="col">Comments On Exhaust Inspection 6</th>
+          <th scope="col">Exhaust Inspection Part Number 7</th>
+          <th scope="col">Exhaust Inspection Photo 7</th>
+          <th scope="col">Comments On Exhaust Inspection 7</th>
+          <th scope="col">Exhaust Inspection Part Number 8</th>
+          <th scope="col">Exhaust Inspection Photo 8</th>
+          <th scope="col">Comments On Exhaust Inspection 8</th>
+          <th scope="col">General Comments</th>
+          <th scope="col">Email Report To</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for plantInspection in plantInspections %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ plantInspection.PlantInspectionID }}</td>
+          <td>{{ plantInspection.CustomerName }}</td>
+          <td>{{ plantInspection.CustomerSite }}</td>
+          <td>{{ plantInspection.Date }}</td>
+          <td>{{ plantInspection.Time }}</td>
+          <td>{{ plantInspection.ContactPerson }}</td>
+          <td>{{ plantInspection.InspectedBy }}</td>
+          <td>{{ plantInspection.InspectionAssistant }}</td>
+          <td>{{ plantInspection.PlantNumber }}</td>
+          <td>{{ plantInspection.PlantMake }}</td>
+          <td>{{ plantInspection.PlantModel }}</td>
+          <td>{{ plantInspection.SerialNumber }}</td>
+          <td>{{ plantInspection.PlantKmsHrs }}</td>
+          <td>{{ plantInspection.EngineMake }}</td>
+          <td>{{ plantInspection.EngineModel }}</td>
+          <td>{{ plantInspection.EngineSerialNumber }}</td>
+          <td>{{ plantInspection.PrimaryFuelFilterPartNumber }}</td>
+          <td>{{ plantInspection.PrimaryFuelFilterPhoto }}</td>
+          <td>{{ plantInspection.CommentsOnFuelFilter }}</td>
+          <td>{{ plantInspection.SecondaryFuelFilterPartNumber }}</td>
+          <td>{{ plantInspection.SecondaryFuelFilterPhoto }}</td>
+          <td>{{ plantInspection.CommentsOnSecondaryFuelFilter }}</td>
+          <td>{{ plantInspection.FuelWaterSeparatorPartNumber }}</td>
+          <td>{{ plantInspection.PhotoOfFuelWaterSeparator }}</td>
+          <td>{{ plantInspection.CommentsOnFuelWaterSeparator }}</td>
+          <td>{{ plantInspection.OilFilterPartNumber }}</td>
+          <td>{{ plantInspection.PhotoOfOilFilter }}</td>
+          <td>{{ plantInspection.CommentsOnOilFilter }}</td>
+          <td>{{ plantInspection.BypassOilFilterPartNumber }}</td>
+          <td>{{ plantInspection.PhotoOfBypassOilFilter }}</td>
+          <td>{{ plantInspection.CommentsOnBypassOilFilter }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter1 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter1 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter2 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter2 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter3 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter3 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter4 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter4 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter5 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter5 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter6 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter6 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter7 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter7 }}</td>
+          <td>{{ plantInspection.HydraulicFilterPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfHydraulicFilter8 }}</td>
+          <td>{{ plantInspection.CommentsOnHydraulicFilter8 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter1 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter1 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter2 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter2 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter3 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter3 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter4 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter4 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter5 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter5 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter6 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter6 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter7 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter7 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfTrannsmissionFilter8 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter8 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter1 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter1 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter2 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter2 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter3 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter3 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter4 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter4 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter5 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter5 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter6 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter6 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter7 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter7 }}</td>
+          <td>{{ plantInspection.TransmissionFilterPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfTransmissionFilter8 }}</td>
+          <td>{{ plantInspection.CommentsOnTransmissionFilter8 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter1 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter1 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter2 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter2 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter3 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter3 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter4 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter4 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter5 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter5 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter6 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter6 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter7 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter7 }}</td>
+          <td>{{ plantInspection.CoolantFiltersPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfCoolantFilter8 }}</td>
+          <td>{{ plantInspection.CommentsOnCoolantFilter8 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter1 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto1 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter2 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto2 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter3 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto3 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter4 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto4 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter5 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto5 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter6 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto6 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter7 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto7 }}</td>
+          <td>{{ plantInspection.BreatherFilterPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfBreatherFilter8 }}</td>
+          <td>{{ plantInspection.CommentsOnBreatherPhoto8 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer1 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer1 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer2 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer2 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer3 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer3 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer4 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer4 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer5 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer5 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer6 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer6 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer7 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer7 }}</td>
+          <td>{{ plantInspection.AirDryerPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfAirDryer8 }}</td>
+          <td>{{ plantInspection.CommentsOnAirDryer8 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter1 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter1 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter2 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter2 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter3 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter3 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter4 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter4 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter5 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter5 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter6 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter6 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter7 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter7 }}</td>
+          <td>{{ plantInspection.CabinFilterPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfCabinFilter8 }}</td>
+          <td>{{ plantInspection.CommentsOnCabinFilter8 }}</td>
+          <td>{{ plantInspection.AirCleanerModel }}</td>
+          <td>{{ plantInspection.PhotoOfAirCleanerArragement1 }}</td>
+          <td>{{ plantInspection.PrimaryElementPartNumber1 }}</td>
+          <td>{{ plantInspection.PrimaryElementDateCode1 }}</td>
+          <td>{{ plantInspection.PhotoOfPrimaryAirCleanerElement1 }}</td>
+          <td>{{ plantInspection.CommentsOnPrimaryAirCleanerElement1 }}</td>
+          <td>{{ plantInspection.SafetyElementPartNumber }}</td>
+          <td>{{ plantInspection.SafetyElementDateCode }}</td>
+          <td>{{ plantInspection.CommentsOnSafetyElement }}</td>
+          <td>{{ plantInspection.PhotoOfAirCleanerOutlet }}</td>
+          <td>{{ plantInspection.CommentsOnAirCleanerOutlet }}</td>
+          <td>{{ plantInspection.PhotoOfCleanAirDucting }}</td>
+          <td>{{ plantInspection.CommentsOnCleanAirDucting }}</td>
+          <td>{{ plantInspection.RestrictionIndicatorPartNumber }}</td>
+          <td>{{ plantInspection.RestrictionIndicatorValue }}</td>
+          <td>{{ plantInspection.PhotoOfRestrictionIndicator }}</td>
+          <td>{{ plantInspection.CommentsOnRestrictionIndicator }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves1 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves1 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves2 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves2 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves3 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves3 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves4 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves4 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves5 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves5 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves6 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves6 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves7 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves7 }}</td>
+          <td>{{ plantInspection.VacuatorValvesPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfVacuatorValves8 }}</td>
+          <td>{{ plantInspection.CommentsOnVacuatorValves8 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation1 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation1 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation2 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation2 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation3 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation3 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation4 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation4 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation5 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation5 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation6 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation6 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation7 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation7 }}</td>
+          <td>{{ plantInspection.OtherObservationPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfOtherObservation8 }}</td>
+          <td>{{ plantInspection.CommentsOnOtherObservation8 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber1 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection1 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection1 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber2 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection2 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection2 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber3 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection3 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection3 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber4 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection4 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection4 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber5 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection5 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection5 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber6 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection6 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection6 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber7 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection7 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection7 }}</td>
+          <td>{{ plantInspection.ExhaustInspectionPartNumber8 }}</td>
+          <td>{{ plantInspection.PhotoOfExhaustInspection8 }}</td>
+          <td>{{ plantInspection.CommentsOnExhaustInspection8 }}</td>
+          <td>{{ plantInspection.GeneralComments }}</td>
+          <td>{{ plantInspection.EmailReportTo }}</td>
+          <td class="text-center">
+            <a href='/update/{{ plantInspection.PlantInspectionID }}' class="btn btn-success">Update</a>
+            <a href='/delete/{{ plantInspection.PlantInspectionID }}' class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endif %}
+    </table>
+  </div>
+</div>
+
+<div id="head">
+  <div class="container text-center mt-5 p-3" style="background-color: #05fa22; border-radius: 15px;">
+    <h2>FHS Birth Certificates Data</h2>
+  </div>
+</div>
+
+<div id="usertable">
+  <div class="container p-2 mb-5">
+    <table class="table fc">
+      {% if birthCertificates|length == 0 %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>No data found!</strong> Start adding FHS Birth Certificates data now.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Birth Certificate ID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Customer Site</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">Contact Person</th>
+          <th scope="col">Inspected By</th>
+          <th scope="col">Inspection Assistant</th>
+          <th scope="col">Plant Number</th>
+          <th scope="col">Plant Make</th>
+          <th scope="col">Plant Model</th>
+          <th scope="col">Serial Number</th>
+          <th scope="col">Plant Kms Hrs</th>
+          <th scope="col">Engine Make</th>
+          <th scope="col">Engine Model</th>
+          <th scope="col">Engine Serial Number</th>
+          <th scope="col">Primary Fuel Filter Part Number</th>
+          <th scope="col">Primary Fuel Filter Photo</th>
+	  <th scope="col">Comments On Fuel Filter</th>
+          <th scope="col">Secondary Fuel Filter Part Number</th>
+          <th scope="col">Secondary Fuel Filter Photo</th>
+          <th scope="col">Comments On Secondary Fuel Filter</th>
+          <th scope="col">Fuel Water Separator Part Number</th>
+          <th scope="col">Fuel Water Separator Photo</th>
+          <th scope="col">Comments On Fuel Water Separator</th>
+          <th scope="col">Oil Filter Part Number</th>
+          <th scope="col">Oil Filter Photo</th>
+          <th scope="col">Comments On Oil Filter</th>
+          <th scope="col">Bypass Oil Filter Part Number</th>
+          <th scope="col">Bypass Oil Filter Photo</th>
+          <th scope="col">Comments On Bypass Oil Filter</th>
+          <th scope="col">Hydraulic Filter Part Number 1</th>
+          <th scope="col">Hydraulic Filter Photo 1</th>
+          <th scope="col">Comments On Hydraulic Filter 1</th>
+          <th scope="col">Hydraulic Filter Part Number 2</th>
+          <th scope="col">Hydraulic Filter Photo 2</th>
+          <th scope="col">Comments On Hydraulic Filter 2</th>
+          <th scope="col">Hydraulic Filter Part Number 3</th>
+          <th scope="col">Hydraulic Filter Photo 3</th>
+          <th scope="col">Comments On Hydraulic Filter 3</th>
+          <th scope="col">Hydraulic Filter Part Number 4</th>
+          <th scope="col">Hydraulic Filter Photo 4</th>
+          <th scope="col">Comments On Hydraulic Filter 4</th>
+          <th scope="col">Hydraulic Filter Part Number 5</th>
+          <th scope="col">Hydraulic Filter Photo 5</th>
+          <th scope="col">Comments On Hydraulic Filter 5</th>
+          <th scope="col">Hydraulic Filter Part Number 6</th>
+          <th scope="col">Hydraulic Filter Photo 6</th>
+          <th scope="col">Comments On Hydraulic Filter 6</th>
+          <th scope="col">Hydraulic Filter Part Number 7</th>
+          <th scope="col">Hydraulic Filter Photo 7</th>
+          <th scope="col">Comments On Hydraulic Filter 7</th>
+          <th scope="col">Hydraulic Filter Part Number 8</th>
+          <th scope="col">Hydraulic Filter Photo 8</th>
+          <th scope="col">Comments On Hydraulic Filter 8</th>
+          <th scope="col">Transmission Filter Part Number 1</th>
+          <th scope="col">Transmission Filter Photo 1</th>
+          <th scope="col">Comments On Transmission Filter 1</th>
+          <th scope="col">Transmission Filter Part Number 2</th>
+          <th scope="col">Transmission Filter Photo 2</th>
+          <th scope="col">Comments On Transmission Filter 2</th>
+          <th scope="col">Transmission Filter Part Number 3</th>
+          <th scope="col">Transmission Filter Photo 3</th>
+          <th scope="col">Comments On Transmission Filter 3</th>
+          <th scope="col">Transmission Filter Part Number 4</th>
+          <th scope="col">Transmission Filter Photo 4</th>
+          <th scope="col">Comments On Transmission Filter 4</th>
+          <th scope="col">Transmission Filter Part Number 5</th>
+          <th scope="col">Transmission Filter Photo 5</th>
+          <th scope="col">Comments On Transmission Filter 5</th>
+          <th scope="col">Transmission Filter Part Number 6</th>
+          <th scope="col">Transmission Filter Photo 6</th>
+          <th scope="col">Comments On Transmission Filter 6</th>
+          <th scope="col">Transmission Filter Part Number 7</th>
+          <th scope="col">Transmission Filter Photo 7</th>
+          <th scope="col">Comments On Transmission Filter 7</th>
+          <th scope="col">Transmission Filter Part Number 8</th>
+          <th scope="col">Transmission Filter Photo 8</th>
+          <th scope="col">Comments On Transmission Filter 8</th>
+          <th scope="col">Coolant Filter Part Number 1</th>
+          <th scope="col">Coolant Filter Photo 1</th>
+          <th scope="col">Comments On Coolant Filter 1</th>
+          <th scope="col">Coolant Filter Part Number 2</th>
+          <th scope="col">Coolant Filter Photo 2</th>
+          <th scope="col">Comments On Coolant Filter 2</th>
+          <th scope="col">Coolant Filter Part Number 3</th>
+          <th scope="col">Coolant Filter Photo 3</th>
+          <th scope="col">Comments On Coolant Filter 3</th>
+          <th scope="col">Coolant Filter Part Number 4</th>
+          <th scope="col">Coolant Filter Photo 4</th>
+          <th scope="col">Comments On Coolant Filter 4</th>
+          <th scope="col">Coolant Filter Part Number 5</th>
+          <th scope="col">Coolant Filter Photo 5</th>
+          <th scope="col">Comments On Coolant Filter 5</th>
+          <th scope="col">Coolant Filter Part Number 6</th>
+          <th scope="col">Coolant Filter Photo 6</th>
+          <th scope="col">Comments On Coolant Filter 6</th>
+          <th scope="col">Coolant Filter Part Number 7</th>
+          <th scope="col">Coolant Filter Photo 7</th>
+          <th scope="col">Comments On Coolant Filter 7</th>
+          <th scope="col">Coolant Filter Part Number 8</th>
+          <th scope="col">Coolant Filter Photo 8</th>
+          <th scope="col">Comments On Coolant Filter 8</th>
+          <th scope="col">Breather Filter Part Number 1</th>
+          <th scope="col">Breather Filter Photo 1</th>
+          <th scope="col">Comments On Breather Filter 1</th>
+          <th scope="col">Breather Filter Part Number 2</th>
+          <th scope="col">Breather Filter Photo 2</th>
+          <th scope="col">Comments On Breather Filter 2</th>
+          <th scope="col">Breather Filter Part Number 3</th>
+          <th scope="col">Breather Filter Photo 3</th>
+          <th scope="col">Comments On Breather Filter 3</th>
+          <th scope="col">Breather Filter Part Number 4</th>
+          <th scope="col">Breather Filter Photo 4</th>
+          <th scope="col">Comments On Breather Filter 4</th>
+          <th scope="col">Breather Filter Part Number 5</th>
+          <th scope="col">Breather Filter Photo 5</th>
+          <th scope="col">Comments On Breather Filter 5</th>
+          <th scope="col">Breather Filter Part Number 6</th>
+          <th scope="col">Breather Filter Photo 6</th>
+          <th scope="col">Comments On Breather Filter 6</th>
+          <th scope="col">Breather Filter Part Number 7</th>
+          <th scope="col">Breather Filter Photo 7</th>
+          <th scope="col">Comments On Breather Filter 7</th>
+          <th scope="col">Breather Filter Part Number 8</th>
+          <th scope="col">Breather Filter Photo 8</th>
+          <th scope="col">Comments On Breather Filter 8</th>
+          <th scope="col">Air Dryer Part Number 1</th>
+          <th scope="col">Air Dryer Photo 1</th>
+          <th scope="col">Comments On Air Dryer 1</th>
+          <th scope="col">Air Dryer Part Number 2</th>
+          <th scope="col">Air Dryer Photo 2</th>
+          <th scope="col">Comments On Air Dryer 2</th>
+          <th scope="col">Air Dryer Part Number 3</th>
+          <th scope="col">Air Dryer Photo 3</th>
+          <th scope="col">Comments On Air Dryer 3</th>
+          <th scope="col">Air Dryer Part Number 4</th>
+          <th scope="col">Air Dryer Photo 4</th>
+          <th scope="col">Comments On Air Dryer 4</th>
+          <th scope="col">Air Dryer Part Number 5</th>
+          <th scope="col">Air Dryer Photo 5</th>
+          <th scope="col">Comments On Air Dryer 5</th>
+          <th scope="col">Air Dryer Part Number 6</th>
+          <th scope="col">Air Dryer Photo 6</th>
+          <th scope="col">Comments On Air Dryer 6</th>
+          <th scope="col">Air Dryer Part Number 7</th>
+          <th scope="col">Air Dryer Photo 7</th>
+          <th scope="col">Comments On Air Dryer 7</th>
+          <th scope="col">Air Dryer Part Number 8</th>
+          <th scope="col">Air Dryer Photo 8</th>
+          <th scope="col">Comments On Air Dryer 8</th>
+          <th scope="col">Cabin Filter Part Number 1</th>
+          <th scope="col">Cabin Filter Photo 1</th>
+          <th scope="col">Comments On Cabin Filter 1</th>
+          <th scope="col">Cabin Filter Part Number 2</th>
+          <th scope="col">Cabin Filter Photo 2</th>
+          <th scope="col">Comments On Cabin Filter 2</th>
+          <th scope="col">Cabin Filter Part Number 3</th>
+          <th scope="col">Cabin Filter Photo 3</th>
+          <th scope="col">Comments On Cabin Filter 3</th>
+          <th scope="col">Cabin Filter Part Number 4</th>
+          <th scope="col">Cabin Filter Photo 4</th>
+          <th scope="col">Comments On Cabin Filter 4</th>
+          <th scope="col">Cabin Filter Part Number 5</th>
+          <th scope="col">Cabin Filter Photo 5</th>
+          <th scope="col">Comments On Cabin Filter 5</th>
+          <th scope="col">Cabin Filter Part Number 6</th>
+          <th scope="col">Cabin Filter Photo 6</th>
+          <th scope="col">Comments On Cabin Filter 6</th>
+          <th scope="col">Cabin Filter Part Number 7</th>
+          <th scope="col">Cabin Filter Photo 7</th>
+          <th scope="col">Comments On Cabin Filter 7</th>
+          <th scope="col">Cabin Filter Part Number 8</th>
+          <th scope="col">Cabin Filter Photo 8</th>
+          <th scope="col">Comments On Cabin Filter 8</th>
+          <th scope="col">Air Cleaner Model</th>
+          <th scope="col">Photo Of Air Cleaner Arrangement</th>
+          <th scope="col">Primary Element Part Number</th>
+          <th scope="col">Primary Element Date Code</th>
+          <th scope="col">Photo Of Primary Air Cleaner Element</th>
+          <th scope="col">Comments On Primary Air Cleaner Element</th>
+          <th scope="col">Safety Element Part Number</th>
+          <th scope="col">Safety Element Date Code</th>
+          <th scope="col">Comments On Safety Element</th>
+          <th scope="col">Photo Of Air Cleaner Outlet</th>
+          <th scope="col">Additional Comments Suggestions</th>
+          <th scope="col">Comments On Air Cleaner Outlet</th>
+          <th scope="col">Photo Of Clean Air Ducting</th>
+          <th scope="col">Comments On Clean Air Ducting</th>
+          <th scope="col">Restriction Indicator Part Number</th>
+          <th scope="col">Restriction Indicator Photo</th>
+          <th scope="col">Comments On Restriction Indicator</th>
+          <th scope="col">Vacuator Valves Part Number 1</th>
+          <th scope="col">Vacuator Valves Photo 1</th>
+          <th scope="col">Comments On Vacuator Valves 1</th>
+          <th scope="col">Vacuator Valves Part Number 2</th>
+          <th scope="col">Vacuator Valves Photo 2</th>
+          <th scope="col">Comments On Vacuator Valves 2</th>
+          <th scope="col">Vacuator Valves Part Number 3</th>
+          <th scope="col">Vacuator Valves Photo 3</th>
+          <th scope="col">Comments On Vacuator Valves 3</th>
+          <th scope="col">Vacuator Valves Part Number 4</th>
+          <th scope="col">Vacuator Valves Photo 4</th>
+          <th scope="col">Comments On Vacuator Valves 4</th>
+          <th scope="col">Vacuator Valves Part Number 5</th>
+          <th scope="col">Vacuator Valves Photo 5</th>
+          <th scope="col">Comments On Vacuator Valves 5</th>
+          <th scope="col">Vacuator Valves Part Number 6</th>
+          <th scope="col">Vacuator Valves Photo 6</th>
+          <th scope="col">Comments On Vacuator Valves 6</th>
+          <th scope="col">Vacuator Valves Part Number 7</th>
+          <th scope="col">Vacuator Valves Photo 7</th>
+          <th scope="col">Comments On Vacuator Valves 7</th>
+          <th scope="col">Vacuator Valves Part Number 8</th>
+          <th scope="col">Vacuator Valves Photo 8</th>
+          <th scope="col">Comments On Vacuator Valves 8</th>
+          <th scope="col">Other Observations Part Number 1</th>
+          <th scope="col">Other Observations Photo 1</th>
+          <th scope="col">Comments On Other Observations 1</th>
+          <th scope="col">Other Observations Part Number 2</th>
+          <th scope="col">Other Observations Photo 2</th>
+          <th scope="col">Comments On Other Observations 2</th>
+          <th scope="col">Other Observations Part Number 3</th>
+          <th scope="col">Other Observations Photo 3</th>
+          <th scope="col">Comments On Other Observations 3</th>
+          <th scope="col">Other Observations Part Number 4</th>
+          <th scope="col">Other Observations Photo 4</th>
+          <th scope="col">Comments On Other Observations 4</th>
+          <th scope="col">Other Observations Part Number 5</th>
+          <th scope="col">Other Observations Photo 5</th>
+          <th scope="col">Comments On Other Observations 5</th>
+          <th scope="col">Other Observations Part Number 6</th>
+          <th scope="col">Other Observations Photo 6</th>
+          <th scope="col">Comments On Other Observations 6</th>
+          <th scope="col">Other Observations Part Number 7</th>
+          <th scope="col">Other Observations Photo 7</th>
+          <th scope="col">Comments On Other Observations 7</th>
+          <th scope="col">Other Observations Part Number 8</th>
+          <th scope="col">Other Observations Photo 8</th>
+          <th scope="col">Comments On Other Observations 8</th>
+          <th scope="col">Exhaust Inspection Part Number 1</th>
+          <th scope="col">Exhaust Inspection Photo 1</th>
+          <th scope="col">Comments On Exhaust Inspection 1</th>
+          <th scope="col">Exhaust Inspection Part Number 2</th>
+          <th scope="col">Exhaust Inspection Photo 2</th>
+          <th scope="col">Comments On Exhaust Inspection 2</th>
+          <th scope="col">Exhaust Inspection Part Number 3</th>
+          <th scope="col">Exhaust Inspection Photo 3</th>
+          <th scope="col">Comments On Exhaust Inspection 3</th>
+          <th scope="col">Exhaust Inspection Part Number 4</th>
+          <th scope="col">Exhaust Inspection Photo 4</th>
+          <th scope="col">Comments On Exhaust Inspection 4</th>
+          <th scope="col">Exhaust Inspection Part Number 5</th>
+          <th scope="col">Exhaust Inspection Photo 5</th>
+          <th scope="col">Comments On Exhaust Inspection 5</th>
+          <th scope="col">Exhaust Inspection Part Number 6</th>
+          <th scope="col">Exhaust Inspection Photo 6</th>
+          <th scope="col">Comments On Exhaust Inspection 6</th>
+          <th scope="col">Exhaust Inspection Part Number 7</th>
+          <th scope="col">Exhaust Inspection Photo 7</th>
+          <th scope="col">Comments On Exhaust Inspection 7</th>
+          <th scope="col">Exhaust Inspection Part Number 8</th>
+          <th scope="col">Exhaust Inspection Photo 8</th>
+          <th scope="col">Comments On Exhaust Inspection 8</th>
+          <th scope="col">General Comments</th>
+          <th scope="col">Email Report To</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for birthCertificate in birthCertificates %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ birthCertificate.BirthCertificateID }}</td>
+          <td>{{ birthCertificate.CustomerName }}</td>
+          <td>{{ birthCertificate.CustomerSite }}</td>
+          <td>{{ birthCertificate.Date }}</td>
+          <td>{{ birthCertificate.Time }}</td>
+          <td>{{ birthCertificate.ContactPerson }}</td>
+          <td>{{ birthCertificate.InspectedBy }}</td>
+          <td>{{ birthCertificate.InspectionAssistant }}</td>
+          <td>{{ birthCertificate.PlantNumber }}</td>
+          <td>{{ birthCertificate.PlantMake }}</td>
+          <td>{{ birthCertificate.PlantModel }}</td>
+          <td>{{ birthCertificate.SerialNumber }}</td>
+          <td>{{ birthCertificate.PlantKmsHrs }}</td>
+          <td>{{ birthCertificate.EngineMake }}</td>
+          <td>{{ birthCertificate.EngineModel }}</td>
+          <td>{{ birthCertificate.EngineSerialNumber }}</td>
+          <td>{{ birthCertificate.PrimaryFuelFilterPartNumber }}</td>
+          <td>{{ birthCertificate.PrimaryFuelFilterPhoto }}</td>
+          <td>{{ birthCertificate.CommentsOnFuelFilter }}</td>
+          <td>{{ birthCertificate.SecondaryFuelFilterPartNumber }}</td>
+          <td>{{ birthCertificate.SecondaryFuelFilterPhoto }}</td>
+          <td>{{ birthCertificate.CommentsOnSecondaryFuelFilter }}</td>
+          <td>{{ birthCertificate.FuelWaterSeparatorPartNumber }}</td>
+          <td>{{ birthCertificate.PhotoOfFuelWaterSeparator }}</td>
+          <td>{{ birthCertificate.CommentsOnFuelWaterSeparator }}</td>
+          <td>{{ birthCertificate.OilFilterPartNumber }}</td>
+          <td>{{ birthCertificate.PhotoOfOilFilter }}</td>
+          <td>{{ birthCertificate.CommentsOnOilFilter }}</td>
+          <td>{{ birthCertificate.BypassOilFilterPartNumber }}</td>
+          <td>{{ birthCertificate.PhotoOfBypassOilFilter }}</td>
+          <td>{{ birthCertificate.CommentsOnBypassOilFilter }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter1 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter1 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter2 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter2 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter3 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter3 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter4 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter4 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter5 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter5 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter6 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter6 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter7 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter7 }}</td>
+          <td>{{ birthCertificate.HydraulicFilterPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfHydraulicFilter8 }}</td>
+          <td>{{ birthCertificate.CommentsOnHydraulicFilter8 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter1 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter1 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter2 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter2 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter3 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter3 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter4 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter4 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter5 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter5 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter6 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter6 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter7 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter7 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfTrannsmissionFilter8 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter8 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter1 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter1 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter2 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter2 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter3 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter3 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter4 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter4 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter5 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter5 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter6 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter6 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter7 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter7 }}</td>
+          <td>{{ birthCertificate.TransmissionFilterPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfTransmissionFilter8 }}</td>
+          <td>{{ birthCertificate.CommentsOnTransmissionFilter8 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter1 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter1 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter2 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter2 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter3 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter3 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter4 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter4 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter5 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter5 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter6 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter6 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter7 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter7 }}</td>
+          <td>{{ birthCertificate.CoolantFiltersPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfCoolantFilter8 }}</td>
+          <td>{{ birthCertificate.CommentsOnCoolantFilter8 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter1 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto1 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter2 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto2 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter3 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto3 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter4 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto4 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter5 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto5 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter6 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto6 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter7 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto7 }}</td>
+          <td>{{ birthCertificate.BreatherFilterPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfBreatherFilter8 }}</td>
+          <td>{{ birthCertificate.CommentsOnBreatherPhoto8 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer1 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer1 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer2 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer2 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer3 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer3 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer4 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer4 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer5 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer5 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer6 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer6 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer7 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer7 }}</td>
+          <td>{{ birthCertificate.AirDryerPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfAirDryer8 }}</td>
+          <td>{{ birthCertificate.CommentsOnAirDryer8 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter1 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter1 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter2 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter2 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter3 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter3 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter4 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter4 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter5 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter5 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter6 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter6 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter7 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter7 }}</td>
+          <td>{{ birthCertificate.CabinFilterPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfCabinFilter8 }}</td>
+          <td>{{ birthCertificate.CommentsOnCabinFilter8 }}</td>
+          <td>{{ birthCertificate.AirCleanerModel }}</td>
+          <td>{{ birthCertificate.PhotoOfAirCleanerArragement1 }}</td>
+          <td>{{ birthCertificate.PrimaryElementPartNumber1 }}</td>
+          <td>{{ birthCertificate.PrimaryElementDateCode1 }}</td>
+          <td>{{ birthCertificate.PhotoOfPrimaryAirCleanerElement1 }}</td>
+          <td>{{ birthCertificate.CommentsOnPrimaryAirCleanerElement1 }}</td>
+          <td>{{ birthCertificate.SafetyElementPartNumber }}</td>
+          <td>{{ birthCertificate.SafetyElementDateCode }}</td>
+          <td>{{ birthCertificate.CommentsOnSafetyElement }}</td>
+          <td>{{ birthCertificate.PhotoOfAirCleanerOutlet }}</td>
+          <td>{{ birthCertificate.CommentsOnAirCleanerOutlet }}</td>
+          <td>{{ birthCertificate.PhotoOfCleanAirDucting }}</td>
+          <td>{{ birthCertificate.CommentsOnCleanAirDucting }}</td>
+          <td>{{ birthCertificate.RestrictionIndicatorPartNumber }}</td>
+          <td>{{ birthCertificate.RestrictionIndicatorValue }}</td>
+          <td>{{ birthCertificate.PhotoOfRestrictionIndicator }}</td>
+          <td>{{ birthCertificate.CommentsOnRestrictionIndicator }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves1 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves1 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves2 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves2 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves3 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves3 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves4 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves4 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves5 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves5 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves6 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves6 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves7 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves7 }}</td>
+          <td>{{ birthCertificate.VacuatorValvesPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfVacuatorValves8 }}</td>
+          <td>{{ birthCertificate.CommentsOnVacuatorValves8 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation1 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation1 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation2 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation2 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation3 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation3 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation4 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation4 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation5 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation5 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation6 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation6 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation7 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation7 }}</td>
+          <td>{{ birthCertificate.OtherObservationPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfOtherObservation8 }}</td>
+          <td>{{ birthCertificate.CommentsOnOtherObservation8 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber1 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection1 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection1 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber2 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection2 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection2 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber3 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection3 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection3 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber4 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection4 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection4 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber5 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection5 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection5 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber6 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection6 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection6 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber7 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection7 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection7 }}</td>
+          <td>{{ birthCertificate.ExhaustInspectionPartNumber8 }}</td>
+          <td>{{ birthCertificate.PhotoOfExhaustInspection8 }}</td>
+          <td>{{ birthCertificate.CommentsOnExhaustInspection8 }}</td>
+          <td>{{ birthCertificate.GeneralComments }}</td>
+          <td>{{ birthCertificate.EmailReportTo }}</td>
+          <td class="text-center">
+            <a href='/update/{{ birthCertificate.BirthCertificateID }}' class="btn btn-success">Update</a>
+            <a href='/delete/{{ birthCertificate.BirthCertificateID }}' class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endif %}
+    </table>
+  </div>
+</div>
+
+<div id="head">
+  <div class="container text-center mt-5 p-3" style="background-color: #05fa22; border-radius: 15px;">
+    <h2>FHS Exhaust Inspection Data</h2>
+  </div>
+</div>
+
+<div id="usertable">
+  <div class="container p-2 mb-5">
+    <table class="table fc">
+      {% if exhaustInspections|length == 0 %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>No data found!</strong> Start adding FHS Exhaust Inspection data now.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Exhaust Inspection ID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Customer Site</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+          <th scope="col">Contact Person</th>
+          <th scope="col">Inspected By</th>
+          <th scope="col">Inspection Assistant</th>
+          <th scope="col">Plant Number</th>
+          <th scope="col">Plant Make</th>
+          <th scope="col">Plant Model</th>
+          <th scope="col">Serial Number</th>
+          <th scope="col">Plant Kms Hrs</th>
+          <th scope="col">Engine Make</th>
+          <th scope="col">Engine Model</th>
+          <th scope="col">Engine Serial Number</th>
+          <th scope="col">Exhaust Muffler Part Number</th>
+          <th scope="col">Photo Of Exhaust Muffler</th>
+          <th scope="col">Comments On Exhaust Muffler</th>
+          <th scope="col">Exhaust Pipe Part Number 1</th>
+          <th scope="col">Photo Of Exhaust Pipe 1</th>
+          <th scope="col">Comments On Exhaust Pipe 1</th>
+          <th scope="col">Exhaust Pipe Part Number 2</th>
+          <th scope="col">Photo Of Exhaust Pipe 2</th>
+          <th scope="col">Comments On Exhaust Pipe 2</th>
+          <th scope="col">Exhaust Pipe Part Number 3</th>
+          <th scope="col">Photo Of Exhaust Pipe 3</th>
+          <th scope="col">Comments On Exhaust Pipe 3</th>
+          <th scope="col">Exhaust Pipe Part Number 4</th>
+          <th scope="col">Photo Of Exhaust Pipe 4</th>
+          <th scope="col">Comments On Exhaust Pipe 4</th>
+          <th scope="col">Exhaust Pipe Part Number 5</th>
+          <th scope="col">Photo Of Exhaust Pipe 5</th>
+          <th scope="col">Comments On Exhaust Pipe 5</th>
+          <th scope="col">Exhaust Pipe Part Number 6</th>
+          <th scope="col">Photo Of Exhaust Pipe 6</th>
+          <th scope="col">Comments On Exhaust Pipe 6</th>
+          <th scope="col">Exhaust Pipe Part Number 7</th>
+          <th scope="col">Photo Of Exhaust Pipe 7</th>
+          <th scope="col">Comments On Exhaust Pipe 7</th>
+          <th scope="col">Exhaust Pipe Part Number 8</th>
+          <th scope="col">Photo Of Exhaust Pipe 8</th>
+          <th scope="col">Comments On Exhaust Pipe 8</th>
+          <th scope="col">General Comments</th>
+          <th scope="col">Email Report To</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for exhaustInspection in exhaustInspections %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ exhaustInspection.ExhaustInspectionID }}</td>
+          <td>{{ exhaustInspection.CustomerName }}</td>
+          <td>{{ exhaustInspection.CustomerSite }}</td>
+          <td>{{ exhaustInspection.Date }}</td>
+          <td>{{ exhaustInspection.Time }}</td>
+          <td>{{ exhaustInspection.ContactPerson }}</td>
+          <td>{{ exhaustInspection.InspectedBy }}</td>
+          <td>{{ exhaustInspection.InspectionAssistant }}</td>
+          <td>{{ exhaustInspection.PlantNumber }}</td>
+          <td>{{ exhaustInspection.PlantMake }}</td>
+          <td>{{ exhaustInspection.PlantModel }}</td>
+          <td>{{ exhaustInspection.SerialNumber }}</td>
+          <td>{{ exhaustInspection.PlantKmsHrs }}</td>
+          <td>{{ exhaustInspection.EngineMake }}</td>
+          <td>{{ exhaustInspection.EngineModel }}</td>
+          <td>{{ exhaustInspection.EngineSerialNumber }}</td>
+          <td>{{ exhaustInspection.ExhaustMufflerPartNumber }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustMuffler }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhastMuffler }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber1 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe1 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe1 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber2 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe2 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe2 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber3 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe3 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe3 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber4 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe4 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe4 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber5 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe5 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe5 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber6 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe6 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe6 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber7 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe7 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe7 }}</td>
+          <td>{{ exhaustInspection.ExhaustPipePartNumber8 }}</td>
+          <td>{{ exhaustInspection.PhotoOfExhaustPipe8 }}</td>
+          <td>{{ exhaustInspection.CommentsOnExhaustPipe8 }}</td>
+          <td>{{ exhaustInspection.GeneralComments }}</td>
+          <td>{{ exhaustInspection.EmailReportTo }}</td>
+          <td class="text-center">
+	    <a href='/update/{{ exhaustInspection.ExhaustInspectionID }}' class="btn btn-success">Update</a>
+            <a href='/delete/{{ exhaustInspection.ExhaustInspectionID }}' class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endif %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

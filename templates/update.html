@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}Update FHS Survey Data{% endblock %}
+{% block body %}
+<div id="update">
+  <div class="container mt-3">
+    <form action="/update/{{ technicalInstallation.TechnicalInstallationID }}" method="POST">
+      <h1 class="fc">Update FHS Technical_Installation Data</h1>
+      <div class="mb-3">
+        <label for="installationID" class="form-label fc">Technical Installation ID:</label>
+        <input type="text" class="form-control bg-light" value="{{ technicalInstallation.TechnicalInstallationID }}"
+		name="installationID">
+      </div>
+      <div class="mb-3">
+	      <label for="customerName" class="form-label fc">Customer Name:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.CustomerName }}" name="customerName">
+      </div>
+      <div class="mb-3">
+        <label for="customerSite" class="form-label fc">Customer Site:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.CustomerSite }}" name="customerSite">
+      </div>
+      <div class="mb-3">
+        <label for="jobNumber" class="form-label fc">Job Number:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.JobNumber }}" name="jobNumber">
+      </div>
+      <div class="mb-3">
+        <label for="invoiceNumber" class="form-label fc">Invoice Number:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InvoiceNumber }}" name="invoiceNumber">
+      </div>
+      <div class="mb-3">
+        <label for="plantMake" class="form-label fc">Plant Make:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.PlantMake }}" name="plantMake">
+      </div>
+      <div class="mb-3">
+        <label for="plantModel" class="form-label fc">Plant Model:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.PlantModel }}" name="plantModel">
+      </div>
+      <div class="mb-3">
+        <label for="serialNumber" class="form-label fc">Serial Number:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.SerialNumber }}" name="serialNumber">
+      </div>
+      <div class="mb-3">
+        <label for="engineMake" class="form-label fc">Engine Make:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.EngineMake }}" name="engineMake">
+      </div>
+      <div class="mb-3">
+        <label for="engineModel" class="form-label fc">Engine Model:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.EngineModel }}" name="engineModel">
+      </div>
+      <div class="mb-3">
+        <label for="engineSerialNumber" class="form-label fc">Engine Serial Number:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.EngineSerialNumber }}" name="engineSerialNumber">
+      </div>
+      <div class="mb-3">
+        <label for="plantNumber" class="form-label fc">Plant Number:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.PlantNumber }}" name="plantNumber">
+      </div>
+      <div class="mb-3">
+        <label for="plantKmsHrs" class="form-label fc">Plant Kms / Hrs:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.PlantKmsHrs }}" name="plantKmsHrs">
+      </div>
+      <div class="mb-3">
+        <label for="warrantyStartDate" class="form-label fc">Warranty Start Date:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.WarrantyStartDate }}" name="warrantyStartDate">
+      </div>
+      <div class="mb-3">
+        <label for="warrantyEndDate" class="form-label fc">Warranty End Date:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.WarrantyEndDate }}" name="warrantyEndDate">
+      </div>
+      <div class="mb-3">
+        <label for="installationPhoto1" class="form-label fc">Installation Photo:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InstallationPhoto1 }}" name="installationPhoto1">
+      </div>
+      <div class="mb-3">
+        <label for="installationPhoto2" class="form-label fc">Installation Photo:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InstallationPhoto2 }}" name="installationPhoto2">
+      </div>
+      <div class="mb-3">
+        <label for="installationPhoto3" class="form-label fc">Installation Photo:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InstallationPhoto3 }}" name="installationPhoto3">
+      </div>
+      <div class="mb-3">
+        <label for="installationPhoto4" class="form-label fc">Installation Photo:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InstallationPhoto4 }}" name="installationPhoto4">
+      </div>
+      <div class="mb-3">
+        <label for="installationPhoto5" class="form-label fc">Installation Photo:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InstallationPhoto5 }}" name="installationPhoto5">
+      </div>
+      <div class="mb-3">
+        <label for="installationPhoto6" class="form-label fc">Installation Photo:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.InstallationPhoto6 }}" name="installationPhoto6">
+      </div>
+      <div class="mb-3">
+        <label for="additionalSuggestions" class="form-label fc">Additional Suggestions:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.AdditionalCommentsSuggestions }}" name="additionalSuggetions">
+      </div>
+      <div class="mb-3">
+        <label for="customerFullName" class="form-label fc">Customer Full Name:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.CustomerFullName }}" name="customerFullName">
+      </div>
+      <div class="mb-3">
+        <label for="customerDate" class="form-label fc">Customer Date:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.CustomerDate }}" name="customerDate">
+      </div>
+      <div class="mb-3">
+        <label for="technitianFullName" class="form-label fc">Technitian Full Name:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.TechnitianFullName }}" name="technitianFullName">
+      </div>
+      <div class="mb-3">
+        <label for="technitianDate" class="form-label fc">Technitian Date:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.TechnitianDate }}" name="technitianDate">
+      </div>
+      <div class="mb-3">
+        <label for="emailReportTo" class="form-label fc">Email Report To:</label>
+        <input type="text" class="form-control" value="{{ technicalInstallation.EmailReportTo }}" name="emailReportTo">
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </form>
+  </div> 
+</div>
+<div id="footer">
+  <div class="container-fluid p-1 fixed-bottom" style="background-color: black;">
+    <p class="text-center" style="background-color: black; color: aliceblue;">This project is Developed by Thato Monyamane</p>
+  </div>
+</div>
+{% endblock %}
+
