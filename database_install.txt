@@ -1,0 +1,67 @@
+INSERT INTO exhaust__inspection VALUES (
+1, 'Letseng Diamond Mine', 'Workshop', '05/02/2025', '05/02/2025', 'Christo', 'Daey Engelbrecht', 'No', '02', 'Caterpillar', NULL, '6015B', 'CAT6015BVFKD00233', 'Caterpillar', 'C27', 'TZR00301', '390-0275', NULL, 'The mufflers are in a good condition', NULL, NULL, 'The muffler ejector stackpipe is cracked open', NULL, NULL, 'Another angle of the muffler ejector stackpipe cracked open', NULL, NULL, 'The other muffler''s ejector stackpipe also badly damaged', NULL, NULL, 'Muffler information', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Both the muffler''s ejector statckpipes are badly damaged and recommend replacing them both', 'marius@fhs.co.za, daey@fhs.co.za');
+
+INSERT INTO exhaust__inspection VALUES (
+2, 'Letseng Diamond Mine', 'Workshop', '05/02/2025', '05/02/2025', 'Christo', 'Daey Engelbrecht', 'No', '122', 'Caterpillar', '777G', 'CAT0777GJTNM00785', NULL, 'Caterpillar', 'C32', 'FZS00166', NULL, NULL, 'The wrong clamps are used to secure the exhaust pipes, and the RHS pipe starts to come out', NULL, NULL, 'Showing the crack on the pressed baffel endplate on the outlet side', NULL, NULL, 'Badly dented exhaust pipe (LHS)', NULL, NULL, 'Badly dented exhaust pipe and almost out of muffler inlet pipe (LHS)', NULL, NULL, 'Badly dented exhaust pipe (RHS)', 'Clean air ducting (LHS)', NULL, 'Clean air ducting pipe hitting against the engine bracket', 'Clean air ducting pipe', NULL, 'Clean air ducting pipe starts showing damage caused by hitting against engine bracket (LHS)', NULL, NULL, NULL, NULL, NULL, NULL, 'Both the left and right-hand side exhaust pipes are badly damaged and need to ne replaced. On the muffler''s outlet side, the pressed baffel endplate is cracked. Recommend replacing the muffler. Also found that the left hand-side clean air ducting pipe is hiting against the engine bracket. Recommend supporting the ducting pipe to give enough clearance to avoid contact with any other object. Also, the wrong clamps are being used on the exhaust pipes connecting
+to the muffler.', 'marius@fhs.co.za, daey@fhs.co.za');
+
+INSERT INTO exhaust__inspection VALUES (
+3, 'Letseng Diamond Mine', 'Workshop', '05/02/2025', '05/02/2025', 'Christo', 'Daey Engelbrecht', 'No', 'R-24', 'Caterpillar', NULL, '773G', 'CATO773GHMWH02007', 'Caterpillar', 'C27', 'PZB00405', NULL, NULL, 'The exhaust pipe is badly damaged', NULL, NULL, 'The exhaust pipe is badly damaged', NULL, NULL, 'The exhaust pipe is badly damaged', 'Clean air ducting pipe', NULL, 'The clean air ducting pipe is hitting against the intercooler pipe (LHS)', 'Clean air ducting pipe (LHS)', NULL, 'The clean air ducting pipe is hitting against the engine intercooler pipe (LHS)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'The exhaust pipe pipe connecting to the is badly damaged. Also found that the clean air ducting pipe is hitting against the engine intercooler pipe. Recommend supporting the clean air ducting pipe to avoid any contact.', 'marius@fhs.co.za, daey@fhs.co.za');
+
+
+
+insert into technical__installation values (
+1, 'B/E', 'Middleburg', '08/03/2025', '08/03/2025', '080325', NULL, 'Terex Finlay', NULL, 'FTL560394', 'Perking', 'RG51208*U721304', 'RG15208', 'SP0034', NULL, '08/03/2025', '07/03/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'All is good', 'Abel', '08/03/2025', 'Storm Nicholas', '08/03/2025', 'nadine@fhs.co.za, daey@fhs.co.za, leon@fhs.co.za, michael.mug@beinternational.co.za' );
+
+insert into technical__installation values (
+2, 'BHBW', 'Boksburg', '14/03/2025', '14/03/2025', '140325', 'SO410519', 'HYSTER', 'H3.0UT', 'A3C1A19731Y', 'YANMAR', '3.0', 'E7484', NULL, NULL, '14/03/2025', '13/03/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'All is good', 'Wayne', '14/03/2025', 'Nicholas', '14/03/2025', 'nadine@fhs.co.za, daey@fhs.co.za' );
+
+insert into technical__installation values (
+3, 'BHWA', 'BHBW - Workshop', '14/03/2025', '14/03/2025', '14-03-25', 'SO415395', 'HYSTER', 'H3.OUT', 'A3C1A19780Z', 'YANMAR', '4TNE98-BQFLC', 'E7686', 'HYSTER H3.OUT', '0.7', '14/03/2025', '13/03/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Air modification has been done', 'BHBW - Wayne', '14/03/2025', 'Frans v.d Linde', '14/03/2025', 'nadine@fhs.co.za' );
+
+insert into technical__installation values (
+4, 'KANU Equipment', 'Workshop', '31/03/2025', '31/03/2025', NULL, NULL, 'Mccloskey', 'J45', '41301', 'Cat', 'C9', 'REH15766', 'J45', New, '31/03/2025', '30/03/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Installed air cleaner', 'Gert', '31/03/2025', 'Adrian/Frans', '31/03/2025', 'nadine@fhs.co.za, frans@fhs.co.za' );
+
+insert into technical__installation values (
+5, 'KANU EQUIPMENT', 'Jet Park', '10/04/2025', '10/04/2025', '100425', NULL, 'McCloskey', 'J4', '710754', 'CAT', 'C9.3B', 'NRE6V09.3NZA', NULL, NULL, '10/04/2025', '09/04/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Air clean modifications has been done. Customer has to move the electronic indicator.', 'Gerrit', '10/04/2025', 'Storm and Nicholas', '10/04/2025', 'gertvs@kanuequipment.co.za, nadine@fhs.co.za, bertus@fhs.co.za, frans@fhs.co.za' );
+
+insert into technical__installation values (
+6, 'KANU EQUIPMENT', 'JET PARK', '31/03/2025', '31/03/2025', '290325', NULL, 'McCloskey', 'C3', '710749', 'CAT', 'C13', 'RRA17054', NULL, NULL, '31/03/2025', '06/03/2028', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Air clean modifications', 'Nicholas.ADRIAN', '31/03/2025', 'Gerrit', '31/03/2025', 'jeanj@fhs.co.za, nadine@fhs.co.za, berturs@fhs.co.za, gertvs@kanuqeuipment.co.za' );
+
+
+insert into technical__installation values (
+7, 'WBHO', 'Chloorkop', '20/03/2025', '20/03/2025', NULL, NULL, 'Bell', 'SK380XD', 'YC14506837', 'Hino', 'JO8E-UN', '064', 'E251', 'New', '20/03/2025', '19/03/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Installed feul and hydraulic filter', 'Johan', '20/03/2025', 'Adrian / Jean', '20/03/2025', 'nadine@fhs.co.za, frans@fhs.co.za, jean@fhs.co.za, llewelyn@fhs.co.za' );
+
+insert into technical__installation values (
+8, 'WBHO', 'Chloorkop', '10/04/2025', '10/04/2025', NULL, NULL, 'Hino', '2836', 'AHHFM2PLXXX10968', 'Toyota', '2836/FM2PL1D-SHQ', '230721', 'KA013', 'New', '10/04/2025', '09/04/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Installed Fuel Filter', 'Patrick', '10/04/2025', 'Adrian / Frans', '10/04/2025', 'adrian@fhs.co.za, frans@fhs.co.za, nadine@fhs.co.za, jean@fhs.co.za' );
+
+insert into technical__installation values (
+9, 'WBHO', 'Chloorkop', '23/04/2025', '23/04/2025', NULL, NULL, 'Bomag', 'BW220D', '961587611263', 'Deutz', 'TCD2012LO62V', '13199698', 'R191', 'New', '23/04/2025', '22/04/2026', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Installed Fuel Filter', 'Johan', '23/04/2025', 'Adrian/Frans', '23/04/2025', 'adrian@fhs.co.za, frans@fhs.co.za, nadine@fhs.co.za, jean@fhs.co.za' );
+
+insert into plant__inspection values (
+1, 'B&E International', 'Drilling rig workshops.', '27/02/2025', '27/02/2025', 'Bongani', 'Rodger Marshall', 'No', NULL,  'CHR043', 'Epiroc', 'Poweroc Series.', '63? This is not the correct reading.', 'YT054', 'Cummins', 'QSB6', NULL, 'Recommend replacing the engine air dust cover part number P777408. Lean, please send a quotation.', 'leon@fhs.co.za, bongani.k@beinternational.co.za' );
+
+insert into plant__inspection values (
+2, 'BLC', 'Rental Workshops', '28/02/2025', '28/02/2025', 'Tinus', 'Rodger Marshall', 'No', NULL,  'ADT049', 'Bell', 'B35D', '?', 'W0916583602993651', 'OM501LA', 'QSB6', NULL, 'Recommend cleaning out the air cleaner outlet with a clean damp cloth when servicing. Recommend replacing the primary and safety elements as soon as possible. These are damaged due to incorrect service procedures.', 'leon@fhs.co.za, keithvanheerden@blcplant.com' );
+
+insert into plant__inspection values (
+3, 'Murray & Dickson', 'Head Office', '01/04/2025', '01/04/2025', 'Dani Erasmus', 'Storm Walters', 'No', NULL,  'GS04', 'TEREX Finlay', '595', 'Not Visible', 'Not Visible', 'Not Visible', NULL, NULL, 'Traces of service dust found in outlet piping recommend cleaning with a damp cloth. There''s a small hole in the ducting pipe causing dust to bypass the air cleaner however it has been reported and repaired.', 'danie.e@mdconstructions.co.za' );
+
+insert into plant__inspection__certificate values (
+1, 'WBHO', 'Chloorkop', '22/04/2025', '22/04/2025', 'Johan Botha', 'Adrain Buitendach', 'Rodger Marshall', NULL,  'R193 Birth Certificate.', 'Bomag', '220D', 'New', '961587611265', 'Deutz', 'TCD 2012 LO6 2v', '13191295', 'Machines filtration system in good condition', 'llewelyn@fhs.co.za, gerrit@fhs.co.za, phillip@fhs.co.za, adrian@fhs.co.za' );
+
+insert into plant__inspection__certificate values (
+2, 'WBHO', 'Chloorkop', '22/04/2025', '22/04/2025', 'Johan Botha', 'Adrain Buitendach', 'Rodger Marshall', NULL,  'R193 Birth Certificate.', 'Bomag', '220D', 'New', '961587611264', 'Deutz', 'TCD 2012 LO6 2v', '13199697', 'Machines filtration system in good condition', 'gerrit@fhs.co.za, phillip@fhs.co.za, llewelyn@fhs.co.za, adrian@fhs.co.za' );  
+
+insert into plant__inspection__certificate values (
+3, 'WBHO', 'Chloorkop Workshops', '22/04/2025', '22/04/2025', 'Johan Botha', 'Rodger Marshall', 'No', NULL,  'R191 Birth Certificate.', 'Bomag', 'BW220D-5', 'New Machine', '961587611263', 'Deutz', 'TCD 2012 LO6 2v', '13199698', 'In good working condition.', 'llewelyn@fhs.co.za, gerrit@fhs.co.za, phillip@fhs.co.za' );
+
+insert into plant__inspection__certificate values (
+4, 'WBHO', 'Chloorkop', '22/04/2025', '22/04/2025', 'Johan Botha', 'Adrain Buitendach', 'Rodger Marshall', NULL,  'R193 Birth Certificate.', 'Bomag', '220D', 'New', '961587611265', 'Deutz', 'TCD 2012 LO6 2v', '13191295', 'Machines filtration system in good condition', 'llewelyn@fhs.co.za, gerrit@fhs.co.za, phillip@fhs.co.za, adrian@fhs.co.za' );
+
+insert into plant__inspection__certificate values (
+5, 'WBHO', 'Chloorkop Workshops', '20/03/2025', '20/03/2025', 'Johan Botha','Rodger Marshall', NULL, NULL,  'E250. Birth Certificate.', 'Hitachi', 'ZX210W-6A', 'New Machine', 'HHELCDE0C00001106', 'isuzu', NULL, 'GI-4HK1XKSA02', NULL, 'llewelyn@fhs.co.za' );
+
+insert into plant__inspection__certificate values (
+6, 'WBHO', 'Chloorkop Workshops', '24/03/2025', '24/03/2025', 'Johan Botha','Rodger Marshall', NULL, 'Adrian Buitendach',  'E249. Birth Certificate.', 'Hitachi', 'ZX210W-5A', 'New Machine', 'HHELCDE0C00001106', 'isuzu', NULL, 'GI-4HK1XKSA02', 'The filtration system is in good working condition.', 'llewelyn@fhs.co.za' );
+
