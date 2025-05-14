@@ -90,4 +90,4 @@ python3
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/logout_success.png)
 
 # Video:
-![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/)
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/2025-05-1413-10-16.mkv)
