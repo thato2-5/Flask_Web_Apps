@@ -89,3 +89,5 @@ python3
 # Logout:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/logout_success.png)
 
+# Video:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/User-Management/)
