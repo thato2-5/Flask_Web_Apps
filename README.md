@@ -1,5 +1,6 @@
 # Warehouse-Management-System
-One of the most important reasons you should use a warehouse management system is that it will help you stay productive. When you write all your tasks in a list, they seem more manageable. When you've got a clear outline of the tasks you've got to do and those you've completed, it helps you stay focused and improve efficiency.\n
+One of the most important reasons you should use a warehouse management system is that it will help you stay productive. When you write all your tasks in a list, they seem more manageable. When you've got a clear outline of the tasks you've got to do and those you've completed, it helps you stay focused and improve efficiency.
+
 So build this website using python flask framework. All required modules are mentioned in reuirements.txt file.
 
 Requirements :
@@ -14,3 +15,14 @@ python3
 
 # Orders Page:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/orders.png)
+
+# Inventory Page:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/inventory.png)
+
+# Dashboard Page:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/dashboard.png)
+
+# Server Page:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/server.png)
+
+
