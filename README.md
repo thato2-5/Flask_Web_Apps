@@ -6,5 +6,11 @@ Requirements :
 VS code
 python3
 
-# Output:
+# Login Page:
 ![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/login_page.png)
+
+# Products Page:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/products.png)
+
+# Orders Page:
+![alt text](https://github.com/thato2-5/Flask_Web_Apps/blob/warehouseManagement/orders.png)
