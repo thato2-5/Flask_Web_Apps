@@ -20,7 +20,7 @@
 
 10. Public Opinion Polling: Governments and NGOs use surveys to understand public opinions on various issues like policy changes, social programs, etc.
 
-So is build this website using python flask framework. All required modules are mentioned in reuirements.txt file.
+So build this website using python flask framework. All required modules are mentioned in reuirements.txt file.
 
 Requirements :
 VS code
